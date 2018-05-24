@@ -1,0 +1,47 @@
+div.contactsCmp-area {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #E9E9E9;
+    width: 300px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background: #fff;
+    padding: 4px;
+    height: 100%;
+}
+
+div.contactsCmp-title {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    background: #9e9e9e;
+    font-weight: 700;
+    color: #eee;
+}
+
+div.contactsCmp-state {
+    margin-bottom: 8px;
+    margin-bottom: 16px;
+    font-size: 10px;
+    color: #666;
+}
+
+b.contactsCmp-state-value {
+    color: #009688;
+}
+
+div.contactsCmp-state-result {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+div.contactsCmp-contacts {
+    padding: 8px;
+    height: calc(100% - 64px);
+    overflow-y: auto;
+    margin-bottom: 8px;
+}
+

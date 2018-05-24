@@ -1,0 +1,24 @@
+<div class="shortcutCmp-area">
+	<div class="shortcutCmp-editable">
+		<label class="shortcutCmp-label" ng-click="call()" ng-if="!editable">{{phone.value}}</label>
+		<button class="shortcutCmp-form shortcutCmp-button shortcutCmp-button-edit" ng-if="!editable" ng-click="edit()">...</button>
+		
+		<input 
+			class="shortcutCmp-field" 
+			name="phone"
+			type="text" 
+			id="phone"
+			ng-if="editable"
+			ng-keypress="($event.which === 13)?save():0"
+			ng-model="phone.value"
+			placeholder="Phone..." 
+			required
+			autofocus
+		/>
+		<button 
+			class="shortcutCmp-form shortcutCmp-button shortcutCmp-button-ok" 
+			ng-if="editable" ng-click="save()">OK</button>
+		<button class="shortcutCmp-form shortcutCmp-button shortcutCmp-button-cancel" ng-if="editable" ng-click="cancel()">X</button> 
+	</div>
+
+</div>

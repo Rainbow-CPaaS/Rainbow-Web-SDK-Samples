@@ -1,0 +1,60 @@
+.shortcutCmp-area {
+	width: 180px;
+    margin: 2px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.shortcutCmp-editable {
+	padding: 0;
+	display: flex;
+	height: 100%;
+}
+
+.shortcutCmp-label {
+	text-align: center;
+    flex-grow: 2;
+    font-size: 12px;
+    transition: all .2s ease-in-out; 
+}
+
+.shortcutCmp-label:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	transform: scale(1.1);
+}
+
+.shortcutCmp-field {
+    width: 60%;
+    margin: 0;
+    padding: 0 6px;
+    border: 0;
+    flex-grow: 2;
+    font-size: 12px;
+}
+
+.shortcutCmp-button {
+	cursor: pointer;
+	color: #ffffff;
+	border: none;
+}
+
+.shortcutCmp-button-edit {
+	background-color: #0087cf;
+	width: 28px;
+}
+
+.shortcutCmp-button-ok {
+	background-color: #0087cf;
+	width: 28px;
+}
+
+.shortcutCmp-button-cancel {
+    background-color: #E91E63;
+    border-left: 1px solid #aaa;
+    width: 28px;
+}
+

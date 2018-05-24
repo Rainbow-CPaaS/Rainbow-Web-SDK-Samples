@@ -1,0 +1,53 @@
+<div class="phoneCmp-area">
+	<div class="phoneCmp-title">Phone</div>
+	<div class="phoneCmp-border">
+	
+		<div class="phoneCmp-header">
+			<div class="phoneCmp-phoneNumber">
+				<div class="phoneCmp-phone">{{state}}</div>
+				<div class="phoneCmp-system">{{system}}</div>
+			</div>
+			<div class="phoneCmp-phoneAgent">
+				<div class="phoneCmp-agent {{phoneCmpAgentVersion}}">{{agentVersion}}</div>
+				<div class="phoneCmp-agent {{phoneCmpAgentXmpp}}">{{agentXmpp}}</div>
+				<div class="phoneCmp-agent {{phoneCmpAgentPhone}}">{{phoneAPI}}</div>
+			</div>
+		</div>
+
+		<div class="phoneCmp-content">
+
+			<form  autocomplete="off" novalidate class="phoneCmp-form">
+				<input
+					class="phoneCmp-field" 
+					name="phone"
+					type="text" 
+					id="phoneNumber"
+					ng-model="phoneNumber"
+					placeholder="phoneNumber to call" 
+					required
+					autofocus/>
+				<button 
+					class="phoneCmp-btn"
+					ng-disabled="!isConnected" 
+					ng-click="call()">Call
+				</button>
+			</form>
+			<div class="shortcuts-area">
+				<rbx-shortcut item="'shortcut_1'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_2'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_3'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_4'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_5'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_6'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_7'"></rbx-shortcut>
+				<rbx-shortcut item="'shortcut_8'"></rbx-shortcut>
+			</div>
+			<div class="phoneCmp-calls">
+				<div class="callsCmp-area">
+					<rbx-call ng-repeat="item in calls" item="item"></rbx-call>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

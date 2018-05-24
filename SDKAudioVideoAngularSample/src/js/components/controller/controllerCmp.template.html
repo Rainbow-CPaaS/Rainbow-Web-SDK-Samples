@@ -1,0 +1,49 @@
+<div class="controllerCmp-area">
+	<div class="controllerCmp-border">
+	
+		<div class="controllerCmp-deviceChecker" ng-show="isCheckedDisplayed">
+			<div class="controllerCmp-deviceTitle">{{title}}</div>
+			<div class="controllerCmp-deviceSubtitle">{{message}}</div>
+		</div>
+
+		<div class="controllerCmp-ondioOnly" ng-show="isAudioOnly">
+			<div class="controllerCmp-deviceTitle">{{messageAudioOnly}}</div>
+		</div>
+
+		<div class="controllerCmp-webrtc-topbar" ng-show="isInCommunication">
+			<button class="controllerCmp-btn-topbar" ng-show="hasLocalVideo && isPIPDisplayed" ng-click="hidePIP()"><i class="fa fa-user-times controllerCmp-btn-topbar-icon"></i></button>
+			<button class="controllerCmp-btn-topbar" ng-show="hasLocalVideo && !isPIPDisplayed" ng-click="showPIP()"><i class="fa fa-user-plus controllerCmp-btn-topbar-icon"></i></button>
+			<button class="controllerCmp-btn-topbar" ng-show="hasRemoteVideo && isRemoteVideoDisplayed" ng-click="hideRemote()"><i class="fa fa-window-close-o controllerCmp-btn-topbar-icon"></i></button>
+			<button class="controllerCmp-btn-topbar" ng-show="hasRemoteVideo && !isRemoteVideoDisplayed" ng-click="showRemote()"><i class="fa fa-video-camera controllerCmp-btn-topbar-icon"></i></button>
+			<button class="controllerCmp-btn-topbar" ng-show="isSpectrumDisplayed" ng-click="hideSpectrum()"><i class="fa fa-times controllerCmp-btn-topbar-icon"></i></button>
+			<button class="controllerCmp-btn-topbar" ng-show="!isSpectrumDisplayed" ng-click="showSpectrum()"><i class="fa fa-signal controllerCmp-btn-topbar-icon"></i></button>
+		</div>
+
+		<div class="controllerCmp-webrtc-bar" ng-show="isInCommunication">
+			<div class="controllerCmp-buttons-area">
+
+				<img class="controllerCmp-btn" src="./res/bt_held_blue.png" ng-show="!isMuted" alt="Mute" ng-click="mute()" />
+				
+				<img class="controllerCmp-btn" src="./res/bt_retreive_blue.png" ng-show="isMuted" alt="Unmute" ng-click="unmute()" />
+
+				<img class="controllerCmp-btn" src="./res/bt_addvideomedia_blue.png" ng-show="!hasLocalVideo" ng-click="addVideo()" alt="Add video" />
+				
+				<img class="controllerCmp-btn" src="./res/bt_dropvideomedia_blue.png" ng-show="hasLocalVideo" ng-click="removeVideo()" alt="Remove the video" />
+
+				<img class="controllerCmp-btn" src="./res/bt_hangout.png" ng-click="release()" alt="Stop the call" />
+				
+			</div>
+		</div>
+	
+		<div class="controllerCmp-webrtc-area">
+			<div class="controllerCmp-webrtc-video">
+				<video id="minivideo" autoplay muted></video>
+				<video id="largevideo" autoplay></video>
+				<video id="globalVideoTag" autoplay style="display:none;"></video>
+   				<audio id="globalAudioTag" autoplay style="display:none;"></audio>
+   			</div>
+   		</div>
+
+		
+	</div>
+</div>

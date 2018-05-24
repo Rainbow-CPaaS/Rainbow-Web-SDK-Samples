@@ -1,0 +1,44 @@
+<div class="connectionCmp-area">
+	<div class="connectionCmp-title">Connection</div>
+	
+	<form id="form" name="form" autocomplete="off" novalidate class="connectionCmp-form">
+		<select 
+			id="host"
+			class="connectionCmp-select"
+			ng-change="changeValue(a, b)"
+			ng-model="selectedItem" 
+			ng-init="selectedItem = selectedItem || hosts[0]"
+			ng-options="v as v.name for v in hosts">
+			</select>
+		<input 
+			name="username"
+			type="text" 
+			id="username"
+			ng-model="user.name"
+			placeholder="Your login" 
+			required
+			autofocus/>
+		<input 
+			name="password"
+			type="password"
+			ng-model="user.password"
+			id="password"
+			placeholder="Your password" 
+			required/> 
+		<button 
+			class="connectionCmp-btn"
+			ng-disabled="isConnected" 
+			ng-click="signin()">Sign In
+		</button>
+
+		<button 
+			class="connectionCmp-btn"
+			ng-disabled="!isConnected"
+			ng-click="signout()">Sign Out
+		</button>
+		<img class="connectionCmp-loader" src="./res/progress.gif" ng-if="isLoading"/> 
+	</form>
+	<div class="connectionCmp-state-result">
+		<div class="connectionCmp-state">State: <b class="connectionCmp-state-value">{{state}}</b></div>
+	</div>
+</div>

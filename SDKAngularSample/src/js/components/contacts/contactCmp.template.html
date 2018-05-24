@@ -1,0 +1,25 @@
+<div class="contactCmp-area">
+	<div class="contactCmp-main">
+		<img class="contactCmp-avatar" width="48" height="48" src="{{$ctrl.item.avatar.src}}" />
+		<div class="contactCmp-presence contactCmp-presence-{{$ctrl.item.status}}"></div>	
+		<div class="contactCmp-details">
+			<div class="contactCmp-name">{{$ctrl.item.displayName}}</div>
+			<div class="contactCmp-data">{{$ctrl.item.company.name}}</div>
+			<div class="contactCmp-data">{{$ctrl.item.status}}</div>
+		</div>
+		<div class="contactCmp-buttons">
+			<button 
+				class="contactCmp-IM-btn"
+				ng-if="!$ctrl.item.conversation && !isConnectedUser"
+				ng-disabled="isConnected" 
+				ng-click="createConversation()">Open
+			</button>
+			<button 
+				class="contactCmp-IM-btn"
+				ng-if="$ctrl.item.conversation && !isConnectedUser"
+				ng-disabled="isConnected" 
+				ng-click="closeConversation()">Close
+			</button>
+		</div>
+	</div>	
+</div>

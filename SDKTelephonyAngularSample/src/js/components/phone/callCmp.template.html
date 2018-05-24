@@ -1,0 +1,37 @@
+<div class="callCmp-area">
+	<div class="callCmp-status">{{$ctrl.item.status.value}}</div>
+	<div class="callCmp-displayName">{{$ctrl.item.contact.displayName}}</div>
+	<div class="callCmp-duration">{{$ctrl.item.contact.duration}}</div>
+	<div class="callCmp-buttons">
+		<div 
+			class="callCmp-btn callCmp-btn-answer"
+			ng-if="$ctrl.item.status.value === 'incommingCall' || $ctrl.item.status.value === 'queued' || $ctrl.item.status.value === 'queuedIncomming'" 
+			ng-click="answer()">
+		</div>
+
+		<div 
+			class="callCmp-btn callCmp-btn-deflectVM"
+			ng-if="$ctrl.item.status.value === 'incommingCall'  || $ctrl.item.status.value === 'queued' || $ctrl.item.status.value === 'queuedIncomming'" 
+			ng-click="deflect()">
+		</div>
+
+		<div 
+			class="callCmp-btn callCmp-btn-hold"
+			ng-if="$ctrl.item.status.value === 'active'" 
+			ng-click="hold()">
+		</div>
+
+		<div 
+			class="callCmp-btn callCmp-btn-retrieve"
+			ng-if="$ctrl.item.status.value === 'held'" 
+			ng-click="retrieve()">
+		</div>
+
+		<div 
+			class="callCmp-btn callCmp-btn-clear"
+			ng-if="$ctrl.item.status.value === 'active' || $ctrl.item.status.value === 'ringingOutgoing' || $ctrl.item.status.value === 'dialing' || $ctrl.item.status.value === 'queuedOutgoing'  || $ctrl.item.status.value === 'incommingCall'"
+			ng-click="clear()">
+		</div>
+	</div>
+
+</div>

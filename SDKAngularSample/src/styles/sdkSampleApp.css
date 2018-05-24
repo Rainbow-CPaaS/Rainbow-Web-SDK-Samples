@@ -1,0 +1,56 @@
+html {
+    height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	font-family: 'Open Sans';
+	background: #f1f1f1;
+}
+
+.app-banner {
+	height: 48px;
+	width: 100%;
+	background: #F44336;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.app-banner-logo {
+	position: relative;
+	margin-top: 8px;
+	margin-left: 8px;
+	width: 32px;
+}
+
+.app-banner-title {
+    line-height: 48px;
+    margin-left: 8px;
+    font-size: 12px;
+    color: #eee;	
+}
+
+.app-banner-copyright {
+  	line-height: 48px;
+    margin-left: auto;
+    margin-right: 8px;
+    font-size: 12px;
+    color: #eee;
+    align-self: stretch;
+}
+
+.app-container {
+	margin-left: 320px;
+}
+
+.app-user {
+	float: right;
+	width: 200px;
+}
+
+.app-contacts {
+	float: left;
+	width: 300px;
+	height: calc(100% - 75px);
+}

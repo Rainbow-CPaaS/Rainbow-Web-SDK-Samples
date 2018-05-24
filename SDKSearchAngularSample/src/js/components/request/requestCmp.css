@@ -1,0 +1,70 @@
+.requestCmp-area {
+    width: 600px;
+    height: 650px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.requestCmp-title {
+    text-align: left;
+    line-height: 41px;
+    margin: 0 10px;
+    font-weight: 200;
+    font-size: 14px;
+    border: none;
+    border-bottom: solid 2px #0085ca;
+}
+
+.requestCmp-auto, .requestCmp-pending {
+   min-height: 300px;
+}
+
+.requestCmp-item {
+    display: flex;
+    padding: 6px;
+}
+
+.requestCmp-identity {
+    margin-left: 8px;
+}
+
+.requestCmp-avatar {
+    width: 60px;
+    height: 60px;
+    margin-left: 8px;
+    border-radius: 2px;
+}
+
+.requestCmp-name {
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+.requestCmp-company {
+    font-size: 10px;
+    color: #ccc;
+    font-weight: 100;
+    padding-left: 4px;
+}
+
+.requestCmp-text {
+    font-size: 12px;
+    padding-left: 4px;
+    padding-top: 6px;
+    font-weight: 100;
+    color: #0085ca;
+}
+
+.requestCmp-empty {
+    margin-left: 10px;
+    color: #aaa;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.requestCmp-actions {
+    text-align: right;
+    flex-grow: 2;
+    margin-right: 8px;
+}

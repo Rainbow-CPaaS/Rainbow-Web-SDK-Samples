@@ -1,0 +1,43 @@
+<div class="mediaCmp-area">
+	<div class="mediaCmp-title">Device Chooser</div>
+
+    <form id="mediaForm" name="form" autocomplete="off" novalidate class="mediaCmp-form">
+        <div ng-show="isChrome">
+            <label class="mediaCmp-label">Microphone</label>
+            <select 
+                id="microphone"
+                class="mediaCmp-select"
+                ng-change="changeMicrophone()"
+                ng-model="selectedMicrophone" 
+                ng-init="selectedMicrophone = selectedMicrophone || microphones[0]"
+                ng-options="v as v.label for v in microphones">
+            </select>
+
+            <label class="mediaCmp-label">Speaker</label>
+            <select 
+                id="speaker"
+                class="mediaCmp-select"
+                ng-change="changeSpeaker()"
+                ng-model="selectedSpeaker" 
+                ng-init="selectedSpeaker = selectedSpeaker || speakers[0]"
+                ng-options="v as v.label for v in speakers">
+            </select>
+
+            <label class="mediaCmp-label">Camera</label>
+            <select 
+                id="camera"
+                class="mediaCmp-select"
+                ng-change="changeCamera()"
+                ng-model="selectedCamera" 
+                ng-init="selectedCamera = selectedCamera || cameras[0]"
+                ng-options="v as v.label for v in cameras">
+            </select>
+        </div>
+        <div ng-show="isFirefox">
+            <label class="mediaCmp-label">Using Firefox, you have to select your device using the native Firefox media selector bar available when you are engaging a WebRTC call.</label>
+        </div>
+        <div ng-show="isOther">
+            <label class="mediaCmp-label">You are using a browser that is not compliant with our WebRTC implementation. Please use either Chrome or Firefox.</label>
+        </div>
+    </form>
+</div>

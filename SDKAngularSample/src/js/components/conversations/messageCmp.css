@@ -1,0 +1,28 @@
+.messageCmp-content {
+	font-size: 10px;
+}
+
+.messageCmp-timestamp {
+	margin-top: 8px;
+	font-size: 9px;
+}
+
+.messageCmp-area-L {
+	background: #0085ca;
+    color: #fff;
+    max-width: 66%;
+    border-radius: 4px;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+
+.messageCmp-area-R {
+	background: #efefef;
+	color: #46464a;
+    max-width: 66%;
+    border-radius: 4px;
+    padding: 4px;
+    margin-bottom: 10px;
+    margin-left:auto; 
+    margin-right:0;
+}

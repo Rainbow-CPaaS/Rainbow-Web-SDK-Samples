@@ -1,0 +1,14 @@
+
+#canvasSound {
+    display: block;
+    margin: 0 auto;
+    padding: 6px;
+    text-align: right;
+    position: absolute;
+    z-index: 3;
+    border: 1px solid #fff;
+    background-color: #000;
+    opacity: 0.75;
+    bottom: 30px;
+    left: 24px;
+}

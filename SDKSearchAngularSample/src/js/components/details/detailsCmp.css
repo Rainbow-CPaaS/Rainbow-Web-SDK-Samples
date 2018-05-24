@@ -1,0 +1,104 @@
+div.userInformation {
+    position: absolute;
+    background: white;
+    color: #ccc;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 5px;
+    top: 92px;
+    left: 10px;
+    width: 268px;
+    height: 558px;
+    border: 1px solid;
+}
+
+    #userDetailsHead {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    a {
+        color: #ccc;
+        font-size: 11px;
+    }
+
+    #name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #696969;
+    }
+
+    #role, #company {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    #detailsfield {
+        position: relative;
+        padding: 6px 20px 4px 0;
+        word-break: break-word;
+    }
+
+    #detailFieldLine {
+        display: block;
+    }
+
+    #title {
+        font-weight: 500;
+        font-size: 11px;
+        color: #0085ca;
+    }
+    .select {
+        cursor: text;
+        touch-callout: text;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text; 
+        font-size: 11px;
+    }
+
+    /*AES_TBC++*/
+    #GroupsInUserInformation {
+        position: relative;
+        top:0px;
+        height: 100%;
+    }
+
+    #listGroup {
+        position: relative;
+        padding: 10px 0 0px 0;       
+    }
+
+
+    #userGroups {
+        position: relative;
+        padding: 0px 0 10px 0;      
+    }
+
+    div.grName {
+        width: calc(100% - 25px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }      
+
+    #addGroup {
+        position: relative;
+        top:0px;     
+    }
+
+    #companyIdentity .userFieldIcon, #detailsfield .userFieldIcon {
+        position:absolute;
+        top:7px;
+        right:0;
+        height: 18px;
+        width: 18px;
+        fill: #0085ca;
+    }
+    
+    .separator {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10 px;
+    }

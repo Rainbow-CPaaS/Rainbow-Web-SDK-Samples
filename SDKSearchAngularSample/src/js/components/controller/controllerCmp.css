@@ -1,0 +1,128 @@
+div.controllerCmp-area {
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+div.controllerCmp-border {
+    width: 100%;
+    height: 100%;
+}
+
+div.searchPeople {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 262px;
+    max-height: 500px;
+    z-index: 1000;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+#controllerCmp-inputSearch {
+    flex-shrink: 0;
+    width: 100%;
+    height: 28px;
+    background: white;
+    font-weight: 200;
+    font-size: 15px;
+    border: none;
+    border-bottom: solid 2px #0085ca;
+}
+
+input::-webkit-input-placeholder { font-size: 12px; font-weight: 200; }
+input::-moz-placeholder { font-size: 12px; font-weight: 200; }
+input:-ms-input-placeholder { font-size: 12px; font-weight: 200; }
+input:-moz-placeholder { font-size: 12px; font-weight: 200; }
+
+div.clearSearch {
+    position:absolute;
+    top:7px;  
+    right:2px;
+}
+
+div.results {
+    flex: 1;
+    border: solid 1px lightgrey;
+    overflow-x: hidden;
+    overflow-y: auto; 
+    background: white;
+}
+
+div.contactCell {
+    position:relative;
+    height:54px;
+    background: white;
+    cursor: default;
+}
+
+#avatar-img {
+    margin: 10px 0 5px 12px;
+    height: 33px;
+    width: 33px;
+    border-radius: 50%;
+}
+
+.contactName, .companyName {
+    position:absolute;
+    top:12px; left:54px;
+    width:200px; height:15px;
+    line-height: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;  
+    color: #595965;
+    font-weight: 400;     
+}
+
+.companyName {
+    top: 26px;
+    font-weight: 200; 
+    font-size: 11px;
+}
+
+div.blur {
+    position: absolute;
+    top: 0px;
+    right: 40px;
+    width: 30px;
+    height: 54px;
+    background-image: linear-gradient(to right, transparent, white);
+}
+
+div.mask {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 40px;
+    height: 54px;
+    background: white;
+}
+
+.addButton {
+    position:absolute;
+    top:7px;
+    right:6px;
+    width: 26px;
+    height: 26px;
+}
+
+div.contactCell:hover {
+    background: #ececed;
+}
+
+div.noResult {
+    width: 100%;
+    height: 54px;
+    font-size: 14px;
+    padding: 17px;
+    font-weight: 100;
+    color: #aaa;
+}
+
+.controllerCmp-title {
+    color: #0085ca;
+    font-size: 16px;
+    font-weight: 600;
+}

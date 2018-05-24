@@ -1,0 +1,101 @@
+div.contactCmp-area {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #E9E9E9;
+    margin-top: 10px;
+    margin-right: 10px;
+    background: #fff;
+    padding: 4px;
+}
+
+div.contactmp-border {
+    margin: 24px auto;
+    border: 1px solid #32799f;
+    max-width: 800px;
+}
+
+div.contactCmp-header {
+    height: 64px;
+    display: flex;
+    border-bottom: 1px solid #32799f;
+}
+
+div.contactCmp-title {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    background: #9e9e9e;
+    font-weight: 700;
+    color: #eee;
+}
+
+div.contactCmp-recipient-area {
+    position: relative;
+    padding: 8px;
+    border-radius: 4px;
+    height: 300px;
+    text-align: center;
+}
+
+.contactCmp-recipient-presence {
+    width: 128px;
+    margin: 6px auto;
+    height: 28px;
+    border-radius: 4px;
+}
+
+.contactCmp-recipient-presence-available {
+    background: #4CAF50;
+    color: #fff;   
+}
+
+.contactCmp-recipient-presence-busy {
+    background: #ff5722;
+    color: #fff;   
+}
+
+.contactCmp-recipient-presence-notAvailable {
+    background: #9e9e9e;
+    color: #fff;   
+}
+
+.contactCmp-recipient-photo {
+    height: 128px;
+    width: 128px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: block;
+    margin: 6px auto;
+    border: 2px solid #ddd;
+
+}
+
+.contactCmp-recipient-select {
+    margin-bottom: 5px;
+    width: 164px;
+    height: 34px;
+    padding: 5px;
+    border: 1px solid rgba(73, 98, 171, 0.22);
+    color: #656565;
+    background: #FBFBFB;
+    -webkit-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+    border-radius: 6px;   
+}
+
+.contactCmp-recipient-btn {
+    border: none;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 400;
+}
+.contactCmp-recipient-btn:enabled {
+    cursor: pointer;
+}
+
+.contactCmp-recipient-btn:disabled {
+    cursor: not-allowed;
+}

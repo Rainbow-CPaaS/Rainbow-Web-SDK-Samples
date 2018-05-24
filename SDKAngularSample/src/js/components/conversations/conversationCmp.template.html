@@ -1,0 +1,22 @@
+<div class="conversationCmp-area">
+	<div class="conversationCmp-title">Conversation</div>
+	
+	<div class="conversationCmp-recipient">
+		<rbx-contact item="contact"></rbx-contact>
+	</div>
+
+	<div class="conversationCmp-messages conversation-{{$ctrl.item.dbId}}">
+		<rbx-message ng-repeat="item in $ctrl.item.messages" item="item"></rbx-message>
+	</div>
+
+	<form ng-submit="onSend()">
+		<input 	
+			class="conversationCmp-editor"
+			name="message"
+			type="text" 
+			id="messageField"
+			placeholder="Your message..." 
+			ng-model="message"
+			autofocus/>
+	</form>
+</div>

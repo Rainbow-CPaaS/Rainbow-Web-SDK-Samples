@@ -1,0 +1,28 @@
+<div class="userInformation">
+    <div id="userDetailsHead">
+        <img class="userDefails-avatar" src="{{$ctrl.contact.avatar.src}}">
+        <div id="name">{{$ctrl.contact.name.value}}</div>
+        <div id="role" ng-if="$ctrl.contact.jobTitle">{{$ctrl.contact.jobTitle}}</div>
+        <div id="company" ng-if="$ctrl.contact.company.name">{{$ctrl.contact.company.name}}</div>
+    
+        <button class="subscribe" ng-if="$ctrl.contact && !$ctrl.contact.roster" ng-click="$ctrl.addContact();">Add to favorites</button>
+        <button class="remove" ng-if="$ctrl.contact && $ctrl.contact.roster" ng-click="$ctrl.removeContact();">Remove from favorites</button>
+    </div>
+
+    <div id="detailsfield" ng-repeat="(field, data) in $ctrl.fields">
+        <div id="title" >{{field}}</div>
+        <div id="detailFieldLine">
+            <span class="select">{{data.value}}</span>
+        </div>
+    </div>
+
+    <div class="separator" ng-if="$ctrl.contact.company.site || $ctrl.contact.company.location" />
+    <div id="companyIdentity" ng-if="$ctrl.contact.company.site || $ctrl.contact.company.location">
+        <div class="companyIdentityField" ng-if="{{$ctrl.contact.company.site}}">
+            <div id="webSite">{{$ctrl.contact.company.site}}</div>
+        </div>
+        <div class="companyIdentityField" ng-if="$ctrl.contact.company.location">
+            <div id="location">{{$ctrl.contact.company.location}}</div>
+        </div>
+    </div>
+</div>

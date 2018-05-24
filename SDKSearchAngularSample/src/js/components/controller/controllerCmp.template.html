@@ -1,0 +1,17 @@
+<div class="controllerCmp-area">
+	<div class="controllerCmp-border">
+	
+		<div class="searchPeople {{$attrs.class}}">
+			<label class="controllerCmp-title">Search for a contact</label>
+			<input id="controllerCmp-inputSearch" ng-model="$ctrl.search" ng-change="$ctrl.onSearchChange()" ui-keyup="{'enter':'searchContact()'}" placeholder="{{ $ctrl.searchPlaceHolder | translate }}" ng-model-options="{ debounce: 500 }">
+			<div class="results" ng-if="$ctrl.searchContacts.length || $ctrl.noResult">
+				<div class="contactCell" ng-repeat="contact in $ctrl.searchContacts" ng-click="$ctrl.onClick(contact);">
+					<img id="avatar-img" ng-src="{{contact.avatar.src}}"/>
+					<div class="contactName">{{contact.displayName}}</div>
+					<div class="companyName">{{contact.company.name}}</div>
+				</div>
+				<div class="noResult" ng-if="$ctrl.noResult">No result found</div>
+			</div>
+		</div>
+	</div>
+</div>

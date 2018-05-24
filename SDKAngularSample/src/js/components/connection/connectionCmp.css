@@ -1,0 +1,98 @@
+div.connectionCmp-area {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #E9E9E9;
+    width: 180px;
+    margin-top: 10px;
+    margin-right: 10px;
+    background: #fff;
+    padding: 4px;
+}
+
+div.connectionCmp-title {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    background: #9e9e9e;
+    font-weight: 700;
+    color: #eee;
+}
+
+form.connectionCmp-form {
+    position: relative;
+    padding: 8px;
+    border-radius: 4px;
+    height: 170px;
+    text-align: center;
+}
+
+button.connectionCmp-btn {
+    margin-top: 6px;
+    border: none;
+    width: 79px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+button.connectionCmp-btn:enabled {
+    color: white;
+    background: #0087cf;
+    cursor: pointer;
+}
+
+button.connectionCmp-btn:disabled {
+    color: white;
+    background: #656565;
+}
+
+input#username, input#password {
+    margin-bottom: 5px;
+    width: 153px;
+    height: 24px;
+    padding: 5px;
+    border: 1px solid rgba(73, 98, 171, 0.22);
+    color: #656565;
+    background: #FBFBFB;
+    -webkit-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+    border-radius: 6px;
+}
+
+select#host {
+    margin-bottom: 5px;
+    width: 164px;
+    height: 34px;
+    padding: 5px;
+    border: 1px solid rgba(73, 98, 171, 0.22);
+    color: #656565;
+    background: #FBFBFB;
+    -webkit-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
+    border-radius: 6px;   
+}
+
+div.connectionCmp-state {
+    margin-bottom: 8px;
+    font-size: 10px;
+    color: #666;
+}
+
+b.connectionCmp-state-value {
+    color: #009688;
+}
+
+div.connectionCmp-state-result {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+img.connectionCmp-loader {
+    margin-top: 3px;
+}

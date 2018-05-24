@@ -1,0 +1,45 @@
+<div class="requestCmp-area">
+    <div class="requestCmp-auto">
+        <label class="requestCmp-title">Answered Invitation</label>
+
+        <div class="requestCmp-empty" ng-if="$ctrl.nbAnswered === 0">
+            No items
+        </div>
+        <div class="requestCmp-list" ng-repeat="(key, value) in $ctrl.autoAnswered">
+            <div class="requestCmp-item">
+                <img class="requestCmp-avatar" src="{{value.contact.avatar.src}}">
+                <div class="requestCmp-identity">
+                    <div class="requestCmp-name">{{value.contact.name.value}}</div>
+                    <div class="requestCmp-company">{{value.contact.company.name}}</div>
+                    <div class="requestCmp-auto">
+                        <div class="requestCmp-text">is now part of your contacts list and share his presence with you</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="requestCmp-pending">
+        <label class="requestCmp-title">Pending Invitations</label>
+        <div class="requestCmp-empty" ng-if="$ctrl.nbPending === 0">
+            No items
+        </div>
+        <div class="requestCmp-list" ng-repeat="(key, value) in $ctrl.pending">
+            <div class="requestCmp-item">
+                <img class="requestCmp-avatar" src="{{value.contact.avatar.src}}">
+                <div class="requestCmp-identity">
+                    <div class="requestCmp-name">{{value.contact.name.value}}</div>
+                    <div class="requestCmp-company">{{value.contact.company.name}}</div>
+                    <div class="requestCmp-new">
+                        <div class="requestCmp-text">wants to be in your contacts list and share his presence with you</div>
+                    </div>
+                </div>
+                <div class="requestCmp-actions">
+                    <button class="requestCmp-accept" ng-click="$ctrl.accept(value.contact);">Accept</button>
+                    <button class="requestCmp-decline" ng-click="$ctrl.decline(value.contact);">Decline</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

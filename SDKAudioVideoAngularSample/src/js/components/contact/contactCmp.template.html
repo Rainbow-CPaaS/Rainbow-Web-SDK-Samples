@@ -1,0 +1,25 @@
+<div class="contactCmp-area">
+	<div class="contactCmp-title">Contacts</div>
+	<div class="contactCmp-border">
+	
+		<div class="contactCmp-recipient-area">
+			<select 
+				class="contactCmp-recipient-select"
+				ng-change="changeValue(a, b)"
+				ng-model="selectedItem" 
+				ng-init="selectedItem = selectedItem || contacts[0]"
+				ng-options="v as v._displayName for v in contacts">
+			</select>
+			<img class="contactCmp-recipient-photo" src="{{avatar}}" />
+			<button ng-click="callAudio()" ng-disabled="!isAvailable" class="contactCmp-recipient-btn contactCmp-recipient-presence contactCmp-recipient-presence-{{presenceValue}}">
+				{{actionAudio}}
+			</button>
+			<button ng-click="callVideo()" ng-disabled="!isAvailable" class="contactCmp-recipient-btn contactCmp-recipient-presence contactCmp-recipient-presence-{{presenceValue}}">
+				{{actionVideo}}
+			</button>
+			<button ng-click="callSharing()" ng-disabled="!isAvailable" class="contactCmp-recipient-btn contactCmp-recipient-presence contactCmp-recipient-presence-{{presenceValue}}">
+				{{actionSharing}}
+			</button>
+		</div>
+	</div>
+</div>

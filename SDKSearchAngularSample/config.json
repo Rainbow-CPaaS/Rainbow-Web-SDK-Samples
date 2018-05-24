@@ -1,0 +1,48 @@
+{
+	"libraries": {
+		"prerequisites": [
+			"//code.jquery.com/jquery-2.1.3.min.js",
+			"//cdn.jsdelivr.net/momentjs/2.15.1/moment-with-locales.min.js",
+			"//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"
+		],
+		"sdk": {
+			"official": [
+				"https://api.openrainbow.com/sdk/web/libs/vendor-sdk.min.js",
+				"https://api.openrainbow.com/sdk/web/libs/rainbow-sdk.min.js"
+			],
+			"default": "official"
+		},
+		"after": []
+	},
+	"app": {
+		"bootstrap": "sample",
+		"key": {
+			"appID": "",
+			"appSecret": ""
+		},
+		"js": [
+			"./src/js/sdkSampleApp.js",
+			"./src/js/components/controller/controllerCmp.js",
+			"./src/js/components/search/searchCmp.js",
+			"./src/js/components/details/detailsCmp.js",
+			"./src/js/components/connection/connectionCmp.js",
+			"./src/js/components/request/requestCmp.js"
+		],
+		"css": [
+			"https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic-ext,cyrillic",
+			"./src/styles/sdkSampleApp.css",
+			"./src/js/components/connection/connectionCmp.css",
+			"./src/js/components/search/searchCmp.css",
+			"./src/js/components/details/detailsCmp.css",
+			"./src/js/components/controller/controllerCmp.css",
+			"./src/js/components/request/requestCmp.css"
+		]
+	},
+	"settings": {
+		"verboseLog": true,
+		"disableCache": true,
+		"stopOnError": true,
+		"enableLoader": true,
+		"useAngularEvents": true
+	}
+}
