@@ -22,6 +22,6 @@ Starting the demo
 
 Before running any of the files mentioned below, run `npm install` in the root folder. That will install the latest version of Rainbow Web SDK along with the basic http-server.
 
-Once this is done, update the `appId` and `appSecret` variables in `sdkSampleApp.js` file. If you don't know where can you get it from, check our [guide](https://hub.openrainbow.com/#/documentation/doc/sdk/web/guides/Adding_id_and_secret_key).
+Once this is done, update the `appId` and `appSecret` variables in `src/js/components/sdkSampleApp.js` file. If you don't know where can you get your Application ID and Application Secret from, check our [guide](https://hub.openrainbow.com/#/documentation/doc/sdk/web/guides/Adding_id_and_secret_key).
 
 At the end just run `npm start` in your console and open your browser on `http://localhost:8887/`.
