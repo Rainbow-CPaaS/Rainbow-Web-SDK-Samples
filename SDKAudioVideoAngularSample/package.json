@@ -1,0 +1,20 @@
+{
+  "name": "sdk-audio-video-angular-sample",
+  "version": "1.0.0",
+  "description": "Rainbow SDK for Web Audio Video Angular Sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/http-server/bin/http-server -p 8887"
+  },
+  "keywords": [
+    "CPaaS",
+    "Rainbow",
+    "SDK"
+  ],
+  "author": "Alcatel-Lucent Enterprise",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1",
+    "rainbow-web-sdk": "^1.52.5"
+  }
+}
