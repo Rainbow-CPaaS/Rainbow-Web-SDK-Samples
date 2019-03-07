@@ -7,8 +7,8 @@
 		],
 		"sdk": {
 			"official": [
-				"https://api.openrainbow.com/sdk/web/libs/vendors-sdk.min.js",
-				"https://api.openrainbow.com/sdk/web/libs/rainbow-sdk.min.js"
+				"./node_modules/rainbow-web-sdk/dist/lib/vendors-sdk.min.js",
+				"./node_modules/rainbow-web-sdk/dist/lib/rainbow-sdk.min.js"
 			],
 			"default": "official"
 		},
