@@ -4,7 +4,6 @@
   "description": "Rainbow Web SDK Angular Sample",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/http-server/bin/http-server -p 8887"
   },
   "repository": {

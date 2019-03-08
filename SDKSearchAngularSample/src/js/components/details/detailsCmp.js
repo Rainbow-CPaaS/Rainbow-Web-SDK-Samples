@@ -64,7 +64,7 @@ angular.module("sample").component("rbxDetails", {
 
         ctrl.removeContact = function removeContact() {
             console.log("remove", ctrl.contact);
-            rainbowSDK.contacts.removeFromContactsList(ctrl.contact).then(function() {
+            rainbowSDK.contacts.removeFromNetwork(ctrl.contact).then(function() {
                 console.log("[DEMO] :: Removed!");
             }).catch(function(err) {
                 console.log("[DEMO] :: Error when removing a contact", err);
@@ -73,7 +73,7 @@ angular.module("sample").component("rbxDetails", {
 
         ctrl.addContact = function addContact() {
             console.log("add", ctrl.contact);
-            rainbowSDK.contacts.addToContactsList(ctrl.contact).then(function() {
+            rainbowSDK.contacts.addToNetwork(ctrl.contact).then(function() {
                 console.log("[DEMO] :: Added!");
             }).catch(function(err) {
                 console.log("[DEMO] :: Error when adding a contact", err);
