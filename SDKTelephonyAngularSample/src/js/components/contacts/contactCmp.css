@@ -1,0 +1,99 @@
+div.contactCmp-area {
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+div.contactCmp-main {
+	display: flex;
+}
+
+div.contactCmp-extra {
+	margin-top: 8px;
+}
+
+.contactCmp-label {
+	min-width: 48px;
+}
+
+img.contactCmp-avatar {
+    border: 1px solid #EEE;
+    border-radius: 4px;
+}
+
+div.contactCmp-name {
+	font-weight: 700;
+	margin-left: 8px;
+	font-size: 10px
+}
+
+.contactCmp-data {
+	color: #666;
+	margin-left: 8px;
+	font-size: 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+div.contactCmp-presence {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    margin-top: 38px;
+    margin-left: -9px;
+    border: 2px solid #eee;
+}
+
+div.contactCmp-presence-online {
+	background: #4caf50;
+}
+
+div.contactCmp-presence-offline, div.contactCmp-presence-invisible {
+	background: #9e9e9e;
+}
+
+div.contactCmp-presence-away {
+	background: #ffc107;	
+}
+
+div.contactCmp-presence-unknown , div.contactCmp-presence-wait {
+	background: #fff;
+}
+
+div.contactCmp-presence-dnd {
+	background: #f44336;
+}
+
+div.contactCmp-presence-busy {
+	background: #795548;
+}
+
+div.contactCmp-presence-online-mobile {
+	background: #2196f3;	
+}
+
+button.contactCmp-IM-btn {
+    border: none;
+    height: 26px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 100;
+}
+
+button.contactCmp-IM-btn:enabled {
+    color: white;
+    background: #795548;
+    cursor: pointer;
+}
+
+button.contactCmp-IM-btn:disabled {
+    color: white;
+    background: #656565;
+}
+
+div.contactCmp-buttons {
+    flex-grow: 1;
+    text-align: right;
+}
+

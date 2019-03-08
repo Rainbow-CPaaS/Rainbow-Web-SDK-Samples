@@ -46,7 +46,7 @@
 	},
 	"settings": {
 		"verboseLog": true,
-		"disableCache": true,
+		"disableCache": false,
 		"stopOnError": true,
 		"enableLoader": true,
 		"useAngularEvents": true

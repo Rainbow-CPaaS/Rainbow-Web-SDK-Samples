@@ -10,10 +10,12 @@ sample.controller("sampleController", [
         /*********************************************************/
         /**                INITIALIZATION STUFF                 **/
         /*********************************************************/
-       console.log("[DEMO] :: Rainbow Telephony Application");
-       
-       var ctrl = this;
-       
+        
+       var appId = "";
+       var appSecret = "";
+
+       var ctrl = this; 
+
        var onReady = function onReady() {
             console.log("[DEMO] :: Rainbow SDK is ready!");
         };
@@ -21,16 +23,22 @@ sample.controller("sampleController", [
         var onLoaded = function onLoaded() {
             console.log("[DEMO] :: Rainbow SDK has been loaded!");
 
-            sdk.initialize().then(function() {
+            sdk.initialize(appId, appSecret).then(function() {
                 console.log("[DEMO] :: Rainbow SDK is initialized!");
             }).catch(function() {
                 console.log("[DEMO] :: Something went wrong with the SDK...");
             });
         };
 
-        $rootScope.$on(sdk.RAINBOW_ONREADY, onReady);
+        this.initialize = function() {
+            console.log("DEMO :: Rainbow Demo Application");
 
-        $rootScope.$on(sdk.RAINBOW_ONLOADED, onLoaded);
+            $rootScope.$on(sdk.RAINBOW_ONREADY, onReady);
+
+            $rootScope.$on(sdk.RAINBOW_ONLOADED, onLoaded);
+        };
+
+        this.initialize();
 
         return true;
     }

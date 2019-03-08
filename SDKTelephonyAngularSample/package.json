@@ -1,0 +1,22 @@
+{
+  "name": "sdk-telephony-angular-sample",
+  "version": "1.0.0",
+  "description": "Rainbow Web SDK Telephony Angular Sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/http-server/bin/http-server -o -p 8887"
+  },
+  "keywords": [
+    "CPaaS",
+    "SDK",
+    "Rainbow"
+  ],
+  "author": "Alcatel-Lucent Enterprise",
+  "license": "ISC",
+  "dependencies": {
+    "rainbow-web-sdk": "^1.52.5"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}

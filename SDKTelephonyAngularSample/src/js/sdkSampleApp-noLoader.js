@@ -12,6 +12,9 @@ sample.controller("sampleController", [
 
         console.log("[DEMO] :: Rainbow Telephony Application");
 
+        var appId = "";
+        var appSecret = "";
+
         var onReady = function onReady() {
             console.log("[DEMO] :: Rainbow SDK is ready!");
         };

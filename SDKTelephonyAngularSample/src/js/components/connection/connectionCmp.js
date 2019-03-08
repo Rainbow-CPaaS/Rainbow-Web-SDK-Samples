@@ -21,16 +21,6 @@ angular.module('sample').component('rbxConnection', {
                 "value": "rainbow",
                 "name": "Rainbow Official"
             },
-            {
-                "id": 2,
-                "value": "beta",
-                "name": "Rainbow Beta"
-            },
-            {
-                "id": 2,
-                "value": "nightly",
-                "name": "Rainbow Nightly"
-            }
         ];
 
         $scope.selectedItem = $scope.hosts[0];
@@ -47,28 +37,6 @@ angular.module('sample').component('rbxConnection', {
             switch ($scope.selectedItem.value) {
                 case "rainbow":
                     rainbowSDK.connection.signinOnRainbowOfficial($scope.user.name, $scope.user.password).then(function(account) {
-                        console.log("[DEMO] :: Successfully signed!");
-                        $scope.isLoading = false;
-                        $scope.isConnected = true;
-                    }).catch(function(err) {
-                        console.log("[DEMO] :: Error when sign-in", err);
-                        $scope.isLoading = false;
-                        $scope.isConnected = false;
-                    });
-                    break;
-                case "beta":
-                    rainbowSDK.connection.signinOnRainbowBeta($scope.user.name, $scope.user.password).then(function(account) {
-                        console.log("[DEMO] :: Successfully signed!");
-                        $scope.isLoading = false;
-                        $scope.isConnected = true;
-                    }).catch(function(err) {
-                        console.log("[DEMO] :: Error when sign-in", err);
-                        $scope.isLoading = false;
-                        $scope.isConnected = false;
-                    });
-                    break;
-                case "nightly":
-                    rainbowSDK.connection.signinOnRainbowDev($scope.user.name, $scope.user.password).then(function(account) {
                         console.log("[DEMO] :: Successfully signed!");
                         $scope.isLoading = false;
                         $scope.isConnected = true;
