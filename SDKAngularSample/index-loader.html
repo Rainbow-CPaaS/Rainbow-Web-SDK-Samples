@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-controller="sampleController">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image/png" href="./res/appLogo.png"/>
+		<title>Rainbow SDK for Web</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.0.5/es6-promise.min.js"></script>
+	</head>
+
+	<body>
+		<!-- Demo specific part -->
+		<div class="app-contacts">
+			<rbx-contacts name="rbxContacts"></rbx-contacts>
+		</div>
+		
+		<div class="app-user">
+			<rbx-connection name="rbxConnection"></rbx-connection>
+			<rbx-user name="rbxUser"></rbx-user>
+			<rbx-presence name="rbxPresence"></rbx-presence>
+		</div>
+
+		<div class="app-container">
+			<rbx-conversations name="rbxConversations"></rbx-conversations>
+		</div>
+		
+		<!-- Load the FOSS, the SDK and the application files -->
+		<script src="./node_modules/rainbow-web-sdk/dist/lib/loader-sdk.min.js" data-main="./config.json"></script>
+	 </body>	
+
+</html>
