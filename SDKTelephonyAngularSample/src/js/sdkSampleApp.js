@@ -10,7 +10,6 @@ sample.controller("sampleController", [
         /*********************************************************/
         /**                INITIALIZATION STUFF                 **/
         /*********************************************************/
-        
        var appId = "";
        var appSecret = "";
 
