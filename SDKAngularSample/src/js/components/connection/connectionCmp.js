@@ -52,7 +52,7 @@ angular.module('sample').component('rbxConnection', {
                         $scope.isLoading = false;
                         $scope.isConnected = true;
                     }).catch(function(err) {
-                        console.log("[DEMO] :: Error when sign-in", err);
+                        console.log("[DEMO] KHTEST :: Error when sign-in", err);
                         $scope.isLoading = false;
                         $scope.isConnected = false;
                     });
