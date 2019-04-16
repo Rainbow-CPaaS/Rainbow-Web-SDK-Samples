@@ -22,7 +22,7 @@ Starting the demo
 
 Before running any of the files mentioned below, run `npm install` in the root folder. That will install the latest version of Rainbow Web SDK along with the basic http-server.
 
-Once this is done, update the `appId` and `appSecret` variables in `src/js/sdkSampleApp.js` file. If you don't know where can you get your Application ID and Application Secret from, check our [guide](https://hub.openrainbow.com/#/documentation/doc/sdk/web/guides/Adding_id_and_secret_key).
+Once this is done, update the `appId` and `appSecret` variables in `src/js/sdkSampleApp-noLoader.js` file. If you don't know where can you get your Application ID and Application Secret from, check our [guide](https://hub.openrainbow.com/#/documentation/doc/sdk/web/guides/Adding_id_and_secret_key).
 
 You will need to create a SSL certificate in order to run a secure local server. In order to do it, navigate to the projects' root folder and run:
 
