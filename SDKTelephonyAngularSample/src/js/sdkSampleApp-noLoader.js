@@ -22,7 +22,7 @@ sample.controller("sampleController", [
         var onLoaded = function onLoaded() {
             console.log("[DEMO] :: Rainbow SDK has been loaded!");
 
-            sdk.initialize().then(function() {
+            sdk.initialize(appId, appSecret).then(function() {
                 console.log("[DEMO] :: Rainbow SDK is initialized!");
             }).catch(function() {
                 console.log("[DEMO] :: Something went wrong with the SDK...");
