@@ -1,6 +1,6 @@
 {
   "name": "sdk-telephony-angular-sample",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rainbow Web SDK Telephony Angular Sample",
   "main": "index.js",
   "scripts": {
