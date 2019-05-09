@@ -8,20 +8,12 @@ angular.module('sample').component('rbxConversation', {
 
         var handlers = [];
 
-        $scope.contact = this.item.contact;
-
-        $scope.conversation = this.item;
-
         $scope.message = "";
 
         $scope.onSend = function() {
             rainbowSDK.im.sendMessageToConversation($scope.conversation, $scope.message);
             $scope.message = "";
         };
-
-        rainbowSDK.im.getMessagesFromConversation(this.item, 50).then(function(__messages) {
-            onConversationChanged();        
-        });
 
         var onConversationChanged = function onConversationChanged() {
             setTimeout(function() {
@@ -32,6 +24,14 @@ angular.module('sample').component('rbxConversation', {
         };
 
         this.$onInit = function() {
+
+            $scope.contact = this.item.contact;
+
+            $scope.conversation = this.item;
+
+            rainbowSDK.im.getMessagesFromConversation(this.item, 50).then(function(__messages) {
+                onConversationChanged();        
+            });
 
             // Subscribe to XMPP connection change
             handlers.push($rootScope.$on(this.item.id, onConversationChanged));
