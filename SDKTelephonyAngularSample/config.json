@@ -14,7 +14,7 @@
 		},
 		"after": [
 			"//cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.5.0/angular-local-storage.min.js",
-			"//cdnjs.cloudflare.com/ajax/libs/angular-ui-notification/0.2.0/angular-ui-notification.min.js"
+			"//cdnjs.cloudflare.com/ajax/libs/angular-ui-notification/0.3.6/angular-ui-notification.min.js"
 		]
 	},
 	"app": {
