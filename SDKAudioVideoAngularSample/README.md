@@ -7,7 +7,7 @@ The Rainbow SDK (Software Development Kit) for Web is a pure AngularJS JavaScrip
 SDK Angular Audio Video Sample
 ------------------------------
 
-This demo is provided "as is" without support.
+This demo is provided "as it is" without support.
 
 This demo demonstrates the use of the following Rainbow SDK for Web APIs:
 
