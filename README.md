@@ -3,7 +3,7 @@
 # Rainbow-Web-SDK-Samples
 ---
 
-Three samples which demonstrate the uses of the Rainbow Web SDK are provided :
+Four angular 1.x samples which demonstrate the uses of the Rainbow Web SDK are provided :
 
 - **[Rainbow IM demo](SDKAngularSample)** (manage list of conversations - chat and bubbles)
 - **[Rainbow Telephony demo](SDKTelephonyAngularSample)** (make or take 3pcc Pbx Calls)
@@ -12,5 +12,7 @@ Three samples which demonstrate the uses of the Rainbow Web SDK are provided :
 
 You must have a valid Rainbow account on Sandbox to be able to login and test, see [Rainbow API Hub](https://hub.openrainbow.com/#/documentation/doc/hub/developer-sandboxed-platform) for details.
 
+For angular 2+ samples, check https://github.com/Rainbow-CPaaS/Angular-Samples
+
 ---
-_Last updated June, 13th 2019_
+_Last updated June, 14th 2019_
