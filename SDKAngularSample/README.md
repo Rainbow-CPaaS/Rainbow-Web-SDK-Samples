@@ -2,12 +2,12 @@
 
 Preamble
 --------
-The Rainbow SDK (Software Development Kit) for Web is a pure AngularJS JavaScript library that works on all modern browsers from IE 11 to the latest version of Chrome, Firefox, Safari and Edge. Its powerful APIs enable you to create the best applications that connect to the Rainbow Cloud Services.
+The Rainbow SDK (Software Development Kit) for Web is a JavaScript library that works on all modern browsers from IE 11 to the latest version of Chrome, Firefox, Safari and Edge. Its powerful APIs enable you to create the best applications that connect to the Rainbow Cloud Services.
 
 SDK Angular Sample
 ------------------
 
-This demo is provided "as it is" without support.
+This demo is provided "as is" without support.
 
 The demo demonstrates the use of the following Rainbow SDK for Web APIs:
 
