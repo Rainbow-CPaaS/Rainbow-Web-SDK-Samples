@@ -15,4 +15,4 @@ You must have a valid Rainbow account on Sandbox Platform to be able to login an
 For Angular 2+ samples, check https://github.com/Rainbow-CPaaS/Angular-Samples
 
 ---
-_Last updated June, 14th 2019_
+_Last updated October, 3rd 2019_
