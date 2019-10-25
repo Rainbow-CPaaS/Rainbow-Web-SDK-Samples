@@ -206,11 +206,11 @@ angular.module("sample").component("rbxController", {
         };
 
         $scope.addVideo = function addVideo() {
-            rainbowSDK.webRTC.escaladeToVideoCall(currentCall);
+            rainbowSDK.webRTC.addVideoToCall(currentCall);
         };
 
         $scope.removeVideo = function removeVideo() {
-            rainbowSDK.webRTC.reverseToAudioCall(currentCall);
+            rainbowSDK.webRTC.removeVideoFromCall(currentCall);
         };
 
         $scope.release = function release() {
