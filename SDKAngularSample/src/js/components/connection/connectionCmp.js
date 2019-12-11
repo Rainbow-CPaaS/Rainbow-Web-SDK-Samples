@@ -1,119 +1,125 @@
-angular.module('sample').component('rbxConnection', {
-    bindings: {
-        name: '@'
-    },
-    controller : function rbcConnectionCtrl (rainbowSDK, $rootScope, $scope) {
+angular.module("sample").component("rbxConnection", {
+  bindings: {
+    name: "@"
+  },
+  controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+    $scope.isConnected = false;
 
-        $scope.isConnected = false;
+    $scope.isLoading = false;
 
-        $scope.isLoading = false;
+    $scope.state = rainbowSDK.connection.getState();
 
-        $scope.state = rainbowSDK.connection.getState();
+    $scope.hosts = [
+      {
+        id: 0,
+        value: "sandbox",
+        name: "Rainbow Sandbox"
+      },
+      {
+        id: 1,
+        value: "rainbow",
+        name: "Rainbow Official"
+      }
+    ];
 
-        $scope.hosts = [
-            {
-                "id": 0,
-                "value": "sandbox",
-                "name": "Rainbow Sandbox"
-            },
-            {
-                "id": 1,
-                "value": "rainbow",
-                "name": "Rainbow Official"
-            }
-        ];
+    $scope.selectedItem = $scope.hosts[0];
 
-        $scope.selectedItem = $scope.hosts[0];
-        
+    var handlers = [];
 
-        var handlers = [];
+    $scope.signin = function() {
+      $scope.isLoading = true;
 
-        $scope.signin = function () {
+      saveToStorage();
 
-            $scope.isLoading = true;
-
-            saveToStorage();
-            
-            switch ($scope.selectedItem.value) {
-                case "rainbow":
-                    rainbowSDK.connection.signinOnRainbowOfficial($scope.user.name, $scope.user.password).then(function(account) {
-                        console.log("[DEMO] :: Successfully signed!");
-                        $scope.isLoading = false;
-                        $scope.isConnected = true;
-                    }).catch(function(err) {
-                        console.log("[DEMO] :: Error when sign-in", err);
-                        $scope.isLoading = false;
-                        $scope.isConnected = false;
-                    });
-                break;
-                default:
-                    rainbowSDK.connection.signin($scope.user.name, $scope.user.password).then(function(account) {
-                        console.log("[DEMO] :: Successfully signed!");
-                        $scope.isLoading = false;
-                        $scope.isConnected = true;
-                    }).catch(function(err) {
-                        console.log("[DEMO] KHTEST :: Error when sign-in", err);
-                        $scope.isLoading = false;
-                        $scope.isConnected = false;
-                    });
-                break;
-            }
-
-            
-        };
-
-        $scope.signout = function() {
-            $scope.isLoading = true;
-            rainbowSDK.connection.signout().then(function() {
-                $scope.isLoading = false;
-                $scope.isConnected = false;
+      switch ($scope.selectedItem.value) {
+        case "rainbow":
+          rainbowSDK.connection
+            .signinOnRainbowOfficial($scope.user.name, $scope.user.password)
+            .then(function(account) {
+              console.log("[DEMO] :: Successfully signed!");
+              $scope.isLoading = false;
+              $scope.isConnected = true;
+            })
+            .catch(function(err) {
+              console.log("[DEMO] :: Error when sign-in", err);
+              $scope.isLoading = false;
+              $scope.isConnected = false;
             });
-        };
+          break;
+        default:
+          rainbowSDK.connection
+            .signin($scope.user.name, $scope.user.password)
+            .then(function(account) {
+              console.log("[DEMO] :: Successfully signed!");
+              $scope.isLoading = false;
+              $scope.isConnected = true;
+            })
+            .catch(function(err) {
+              console.log("[DEMO] :: Error when sign-in", err);
+              $scope.isLoading = false;
+              $scope.isConnected = false;
+            });
+          break;
+      }
+    };
 
-        var saveToStorage = function () {
-            sessionStorage.connection = angular.toJson($scope.user);
-            sessionStorage.host = angular.toJson($scope.selectedItem);
-        };
+    $scope.signout = function() {
+      $scope.isLoading = true;
+      rainbowSDK.connection.signout().then(function() {
+        $scope.isLoading = false;
+        $scope.isConnected = false;
+      });
+    };
 
-        var readFromStorage = function () {
-            if(sessionStorage.connection) {
-                $scope.user = angular.fromJson(sessionStorage.connection);
-            }
-            else {
-                $scope.user = {name: "", password: ""};
-            }
+    var saveToStorage = function() {
+      sessionStorage.connection = angular.toJson($scope.user);
+      sessionStorage.host = angular.toJson($scope.selectedItem);
+    };
 
-            if(sessionStorage.host) {
-                $scope.selectedItem = $scope.hosts[angular.fromJson(sessionStorage.host).id];    
-            }
-            else {
-                $scope.selectedItem = $scope.hosts[0];
-            }
-        };
+    var readFromStorage = function() {
+      if (sessionStorage.connection) {
+        $scope.user = angular.fromJson(sessionStorage.connection);
+      } else {
+        $scope.user = { name: "", password: "" };
+      }
 
-        var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(event, status) {
-            $scope.state = rainbowSDK.connection.getState();
-        };
+      if (sessionStorage.host) {
+        $scope.selectedItem =
+          $scope.hosts[angular.fromJson(sessionStorage.host).id];
+      } else {
+        $scope.selectedItem = $scope.hosts[0];
+      }
+    };
 
-        this.$onInit = function () {
-            // Subscribe to XMPP connection change
-            handlers.push($rootScope.$on(rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED, onConnectionStateChangeEvent));   
-        };
+    var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
+      event
+    ) {
+      $scope.state = rainbowSDK.connection.getState();
+    };
 
-        this.$onDestroy = function () {
-            var handler = handlers.pop();
-            while(handler) {
-                handler();
-                handler = handlers.pop();
-            };
-        };
+    this.$onInit = function() {
+      // Subscribe to XMPP connection change
+      handlers.push(
+        document.addEventListener(
+          rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
+          onConnectionStateChangeEvent
+        )
+      );
+    };
 
-        var initialize = function() {
-            readFromStorage();
-        };
+    this.$onDestroy = function() {
+      var handler = handlers.pop();
+      while (handler) {
+        handler();
+        handler = handlers.pop();
+      }
+    };
 
-        initialize();
+    var initialize = function() {
+      readFromStorage();
+    };
 
-    },
-    templateUrl: './src/js/components/connection/connectionCmp.template.html' 
+    initialize();
+  },
+  templateUrl: "./src/js/components/connection/connectionCmp.template.html"
 });

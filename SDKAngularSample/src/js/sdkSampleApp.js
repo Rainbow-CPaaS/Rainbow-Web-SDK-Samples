@@ -1,44 +1,47 @@
-
-var sample = angular.module('sample', ['sdk']);
+var sample = angular.module("sample", ["sdk"]);
 
 sample.controller("sampleController", [
-    "$log",
-    "$rootScope",
-    "rainbowSDK", 
-    function($log, $rootScope, sdk) {
-        "use strict";
+  "$log",
+  "$rootScope",
+  "rainbowSDK",
+  function($log, $rootScope, sdk) {
+    "use strict";
 
-        /*********************************************************/
-        /**                INITIALIZATION STUFF                 **/
-        /*********************************************************/
-        
-        var appId = "";
-        var appSecret = "";
+    /*********************************************************/
+    /**                INITIALIZATION STUFF                 **/
+    /*********************************************************/
 
-        var onReady = function onReady() {
-            console.log("[DEMO] :: Rainbow SDK is ready!");
-        };
+    var appId = "9ac0acb0dc2111e89523bf69be48b149";
+    var appSecret =
+      "CBBfEF52489PNhvEFdbI1NNTb3U7157p4wPVrpT7JQ2aottFzELeIPxcpefXywfl";
 
-        var onLoaded = function onLoaded() {
-            console.log("[DEMO] :: Rainbow SDK has been loaded!");
+    var onReady = function onReady() {
+      console.log("[DEMO] :: Rainbow SDK is ready!");
+    };
 
-            sdk.initialize(appId, appSecret).then(function() {
-                console.log("[DEMO] :: Rainbow SDK is initialized!");
-            }).catch(function() {
-                console.log("[DEMO] :: Something went wrong with the SDK...");
-            });
-        };
+    var onLoaded = function onLoaded() {
+      console.log("[DEMO] :: Rainbow SDK has been loaded!");
 
-        this.initialize = function() {
-            console.log("DEMO :: Rainbow Demo Application");
+      sdk
+        .initialize(appId, appSecret)
+        .then(function() {
+          console.log("[DEMO] :: Rainbow SDK is initialized!");
+        })
+        .catch(function() {
+          console.log("[DEMO] :: Something went wrong with the SDK...");
+        });
+    };
 
-            $rootScope.$on(sdk.RAINBOW_ONREADY, onReady);
+    this.initialize = function() {
+      console.log("DEMO :: Rainbow Demo Application");
 
-            $rootScope.$on(sdk.RAINBOW_ONLOADED, onLoaded);
-        };
+      document.addEventListener(sdk.RAINBOW_ONREADY, onReady);
 
-        this.initialize();
+      document.addEventListener(sdk.RAINBOW_ONLOADED, onLoaded);
+    };
 
-        return true;
-    }
+    this.initialize();
+
+    return true;
+  }
 ]);
