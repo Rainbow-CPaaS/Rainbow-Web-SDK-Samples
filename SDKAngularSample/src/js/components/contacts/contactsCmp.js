@@ -62,17 +62,15 @@ angular.module("sample").component("rbxContacts", {
     };
 
     var onContactInformationChangeEvent = function onContactInformationChangeEvent(
-      event,
-      contact
+      event
     ) {
-      console.log("DEMO :: Contact information changed to ", contact);
+      console.log("DEMO :: Contact information changed to ", event.detail);
     };
 
     var onContactPresenceChangeEvent = function onContactPresenceChangeEvent(
-      event,
-      status
+      event
     ) {
-      console.log("DEMO :: presence changed to ", status);
+      console.log("DEMO :: presence changed to ", event.detail);
     };
 
     var countNumberOfContacts = function countNumberOfContacts() {
@@ -97,9 +95,9 @@ angular.module("sample").component("rbxContacts", {
     };
 
     var onContactsInformationChanged = function onContactsInformationChanged(
-      event,
-      contact
+      event
     ) {
+      var contact = event.detail;
       if (!(contact.id in $scope.contacts)) {
         $scope.contacts[contact.id] = contact;
         countNumberOfContacts();
