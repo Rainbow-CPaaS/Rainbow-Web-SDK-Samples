@@ -1,33 +1,39 @@
 angular.module("sample").component("rbxSearch", {
-    bindings: {
-    },
+  bindings: {},
 
-    templateUrl: "./src/js/components/search/searchCmp.template.html",
+  templateUrl: "./src/js/components/search/searchCmp.template.html",
 
-    controller : function rbxSearchCmp(rainbowSDK, $rootScope) {
+  controller: function rbxSearchCmp(rainbowSDK, $rootScope) {
+    "use strict";
 
-        "use strict";
+    var ctrl = this;
 
-        var ctrl = this;
+    var listeners = [];
 
-        var listeners = [];
+    ctrl.contact = null;
 
-        ctrl.contact = null;
+    ctrl.$onInit = function() {
+      this.contact = null;
+      listeners.push(
+        document.addEventListener(
+          rainbowSDK.contacts.RAINBOW_ONCONTACTSUBSCRIPTIONAUTOANSWERED,
+          onContactSubscriptionRequest
+        )
+      );
+    };
 
-        ctrl.$onInit = function() {
-            this.contact = null;
-            listeners.push($rootScope.$on(rainbowSDK.contacts.RAINBOW_ONCONTACTSUBSCRIPTIONAUTOANSWERED, onContactSubscriptionRequest));
-        };
+    ctrl.$onDestroy = function() {};
 
-        ctrl.$onDestroy = function() {
-        };
+    this.onSelect = function(contact) {
+      ctrl.contact = contact;
+    };
 
-        this.onSelect = function(contact) {
-            ctrl.contact = contact;
-        };
-
-        var onContactSubscriptionRequest = function onContactSubscriptionRequest(__event, contact) {
-            console.log("[DEMO] :: Subscription request from", contact);
-        };
-    } 
+    var onContactSubscriptionRequest = function onContactSubscriptionRequest(
+      event
+    ) {
+      var contact = event.detail;
+      console.log("[DEMO] :: Subscription request from");
+    };
+  }
 });
+

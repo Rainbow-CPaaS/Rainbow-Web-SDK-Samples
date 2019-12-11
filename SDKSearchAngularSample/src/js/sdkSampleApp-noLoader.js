@@ -1,42 +1,44 @@
-
 var sample = angular.module("sample", ["sdk"]);
 
 sample.controller("sampleController", [
-    "$rootScope",
-    "rainbowSDK", 
-    function($rootScope, sdk) {
-        "use strict";
+  "$rootScope",
+  "rainbowSDK",
+  function($rootScope, sdk) {
+    "use strict";
 
-        /*********************************************************/
-        /**                INITIALIZATION STUFF                 **/
-        /*********************************************************/
+    /*********************************************************/
+    /**                INITIALIZATION STUFF                 **/
+    /*********************************************************/
 
-        console.log("[DEMO] :: Rainbow Search Application");
+    console.log("[DEMO] :: Rainbow Search Application");
 
-       var appId = "";
-       var appSecret = "";
-        
-        var onReady = function onReady() {
-            console.log("[DEMO] :: Rainbow SDK is ready!");
-        };
+    var appId = "";
+    var appSecret = "";
 
-        var onLoaded = function onLoaded() {
-            console.log("[DEMO] :: Rainbow SDK has been loaded!");
+    var onReady = function onReady() {
+      console.log("[DEMO] :: Rainbow SDK is ready!");
+    };
 
-            sdk.initialize(appId, appSecret).then(function() {
-                console.log("[DEMO] :: Rainbow SDK is initialized!");
-            }).catch(function() {
-                console.log("[DEMO] :: Something went wrong with the SDK...");
-            });
-        };
+    var onLoaded = function onLoaded() {
+      console.log("[DEMO] :: Rainbow SDK has been loaded!");
 
-        $rootScope.$on(sdk.RAINBOW_ONREADY, onReady);
+      sdk
+        .initialize(appId, appSecret)
+        .then(function() {
+          console.log("[DEMO] :: Rainbow SDK is initialized!");
+        })
+        .catch(function() {
+          console.log("[DEMO] :: Something went wrong with the SDK...");
+        });
+    };
 
-        $rootScope.$on(sdk.RAINBOW_ONLOADED, onLoaded);
-        
-        sdk.useAngularEvents(true);
-        sdk.load();
+    document.addEventListener(sdk.RAINBOW_ONREADY, onReady);
 
-        return true;
-    }
+    document.addEventListener(sdk.RAINBOW_ONLOADED, onLoaded);
+
+    sdk.useAngularEvents(true);
+    sdk.load();
+
+    return true;
+  }
 ]);
