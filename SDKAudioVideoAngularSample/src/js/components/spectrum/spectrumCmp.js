@@ -39,9 +39,9 @@ angular.module("sample").component("rbxSpectrum", {
             gradient.addColorStop(0, "violet");
 
             // Subscribe to contact change
-            $rootScope.$on("$destroy", ($rootScope.$on(rainbowSDK.webRTC.RAINBOW_ONWEBRTCCALLSTATECHANGED, onWebRTCCallChanged)));
+            document.addEventListener(rainbowSDK.webRTC.RAINBOW_ONWEBRTCCALLSTATECHANGED, onWebRTCCallChanged)));
 
-            $rootScope.$on("$destroy", ($rootScope.$on(rainbowSDK.webRTC.RAINBOW_ONWEBRTCSTREAMADDED, onWebRTCStreamAdded)));
+            document.addEventListener(rainbowSDK.webRTC.RAINBOW_ONWEBRTCSTREAMADDED, onWebRTCStreamAdded)));
 
             $rootScope.$on("$destroy", ($rootScope.$on("DEMO_ON_SPECTRUM_DISPLAY", onSpectrumDisplayChanged)));
 
@@ -51,7 +51,8 @@ angular.module("sample").component("rbxSpectrum", {
         
         };
 
-        var onWebRTCStreamAdded = function onWebRTCStreamAdded(__event, streams) {
+        var onWebRTCStreamAdded = function onWebRTCStreamAdded(event) {
+            var streams = event.detail;
             console.log("[DEMO] :: >>> WebRTC stream added", streams);
             if (!isSpectrumStarted) {
                 startSpectrum(streams);
@@ -62,7 +63,8 @@ angular.module("sample").component("rbxSpectrum", {
             $scope.isSpectrumDisplayed = isDisplayed;
         };
         
-        var onWebRTCCallChanged = function onWebRTCCallChanged(__event, call) {
+        var onWebRTCCallChanged = function onWebRTCCallChanged(event) {
+            var call = event.detail;
 
             switch (call.status.value) {
                 
