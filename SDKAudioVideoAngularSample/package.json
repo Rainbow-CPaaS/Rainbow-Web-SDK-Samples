@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.11.1",
-    "rainbow-web-sdk": "^1.64.3"
+    "rainbow-web-sdk": "^1.70.0"
   },
   "devDependencies": {
     "http-server": "^0.11.1"

@@ -3,7 +3,7 @@ var sample = angular.module("sample", ["sdk"]);
 sample.controller("sampleController", [
   "$rootScope",
   "rainbowSDK",
-  function($rootScope, sdk) {
+  function ($rootScope, sdk) {
     "use strict";
 
     /*********************************************************/
@@ -24,10 +24,10 @@ sample.controller("sampleController", [
 
       sdk
         .initialize(appId, appSecret)
-        .then(function() {
+        .then(function () {
           console.log("[DEMO] :: Rainbow SDK is initialized!");
         })
-        .catch(function() {
+        .catch(function () {
           console.log("[DEMO] :: Something went wrong with the SDK...");
         });
     };
@@ -36,9 +36,8 @@ sample.controller("sampleController", [
 
     document.addEventListener(sdk.RAINBOW_ONLOADED, onLoaded);
 
-    sdk.useAngularEvents(true);
     sdk.load();
 
     return true;
-  }
+  },
 ]);
