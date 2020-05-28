@@ -1,14 +1,10 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxConversations", {
   bindings: {
     name: "@",
-    conversations: "="
+    conversations: "=",
   },
-  controller: function rbcConnectionsCtrl(
-    rainbowSDK,
-    $rootScope,
-    $scope,
-    $timeout
-  ) {
+  controller: function rbcConnectionsCtrl($rootScope, $scope, $timeout) {
     $scope.conversations = [];
 
     var getAllOneToOneConversations = function getAllOneToOneConversations() {
@@ -16,7 +12,7 @@ angular.module("sample").component("rbxConversations", {
 
       var oneToOneConversations = [];
 
-      conversations.forEach(function(conversation) {
+      conversations.forEach(function (conversation) {
         if (conversation.type === 0) {
           oneToOneConversations.push(conversation);
         }
@@ -43,7 +39,7 @@ angular.module("sample").component("rbxConversations", {
       $scope.conversations = $scope.conversations = getAllOneToOneConversations();
     };
 
-    var onConversationChanged = function(__event, conversationID) {
+    var onConversationChanged = function (__event, conversationID) {
       $rootScope.$broadcast(conversationID, null);
     };
 
@@ -68,6 +64,5 @@ angular.module("sample").component("rbxConversations", {
     );
   },
   templateUrl:
-    "./src/js/components/conversations/conversationsCmp.template.html"
+    "./src/js/components/conversations/conversationsCmp.template.html",
 });
-

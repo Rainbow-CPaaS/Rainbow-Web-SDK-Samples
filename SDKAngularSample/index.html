@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" ng-controller="sampleController" ng-app="sample">
+<html lang="en" >
 
 	<head>
 		<title>Rainbow SDK for Web</title>
@@ -17,39 +17,43 @@
         <link rel="stylesheet" href="./src/js/components/conversations/conversationsCmp.css">
         <link rel="stylesheet" href="./src/js/components/conversations/conversationCmp.css">
         <link rel="stylesheet" href="./src/js/components/conversations/messageCmp.css">
+
 		<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/es6-promise/4.0.5/es6-promise.min.js"></script>
         <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="//cdn.jsdelivr.net/momentjs/2.15.1/moment-with-locales.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
-		<script src="./node_modules/rainbow-web-sdk/dist/lib/vendors-sdk.min.js"></script>
-        <script src="./node_modules/rainbow-web-sdk/dist/lib/rainbow-sdk.min.js"></script>
-        <script src="./src/js/sdkSampleApp-noLoader.js"></script>
-        <script src="./src/js/components/connection/connectionCmp.js"></script>
-        <script src="./src/js/components/presence/presenceCmp.js"></script>
-        <script src="./src/js/components/contacts/contactsCmp.js"></script>
-        <script src="./src/js/components/contacts/contactCmp.js"></script>
-        <script src="./src/js/components/user/userCmp.js"></script>
-        <script src="./src/js/components/conversations/conversationsCmp.js"></script>
-        <script src="./src/js/components/conversations/conversationCmp.js"></script>
-        <script src="./src/js/components/conversations/messageCmp.js"></script>
+
+		<script src="./node_modules/rainbow-web-sdk/src/vendors-sdk.min.js"></script>
+
+		<script type="module" src="./src/js/sdkSampleApp.js" ></script>
+		<script type="module" src="./src/js/components/connection/connectionCmp.js"></script>
+		<script type="module" src="./src/js/components/presence/presenceCmp.js"></script>
+		<script type="module" src="./src/js/components/contacts/contactsCmp.js"></script>
+		<script type="module" src="./src/js/components/contacts/contactCmp.js"></script>
+		<script type="module" src="./src/js/components/user/userCmp.js"></script>
+		<script type="module" src="./src/js/components/conversations/conversationsCmp.js"></script>
+		<script type="module" src="./src/js/components/conversations/conversationCmp.js"></script>
+		<script type="module" src="./src/js/components/conversations/messageCmp.js"></script>
 	</head>
 
 	<body>
 		<!-- Demo specific part -->
-		<div class="app-contacts">
-			<rbx-contacts name="rbxContacts"></rbx-contacts>
-		</div>
-		
-		<div class="app-user">
-			<rbx-connection name="rbxConnection"></rbx-connection>
-			<rbx-user name="rbxUser"></rbx-user>
-			<rbx-presence name="rbxPresence"></rbx-presence>
-		</div>
+        <div ng-controller="sampleController" ng-app="sample">
+			<div class="app-contacts">
+				<rbx-contacts name="rbxContacts"></rbx-contacts>
+			</div>
 
-		<div class="app-container">
-			<rbx-conversations name="rbxConversations"></rbx-conversations>
-		</div>
+			<div class="app-user">
+				<rbx-connection name="rbxConnection"></rbx-connection>
+				<rbx-user name="rbxUser"></rbx-user>
+				<rbx-presence name="rbxPresence"></rbx-presence>
+			</div>
+
+			<div class="app-container">
+				<rbx-conversations name="rbxConversations"></rbx-conversations>
+			</div>
+        </div>
 
  	</body>	
 

@@ -1,16 +1,13 @@
-var sample = angular.module("sample", ["sdk"]);
+import rainbowSDK from "../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
+var sample = angular.module("sample", []);
 
 sample.controller("sampleController", [
-  "$log",
-  "$rootScope",
-  "rainbowSDK",
-  function($log, $rootScope, sdk) {
+  function ($log, $rootScope, sdk) {
     "use strict";
 
     /*********************************************************/
     /**                INITIALIZATION STUFF                 **/
     /*********************************************************/
-
     var appId = "";
     var appSecret = "";
 
@@ -18,29 +15,23 @@ sample.controller("sampleController", [
       console.log("[DEMO] :: Rainbow SDK is ready!");
     };
 
-    var onLoaded = function onLoaded() {
-      console.log("[DEMO] :: Rainbow SDK has been loaded!");
+    rainbowSDK
+      .initialize(appId, appSecret)
+      .then(function () {
+        console.log("[DEMO] :: Rainbow SDK is initialized!");
+      })
+      .catch(function () {
+        console.log("[DEMO] :: Something went wrong with the SDK...");
+      });
 
-      sdk
-        .initialize(appId, appSecret)
-        .then(function() {
-          console.log("[DEMO] :: Rainbow SDK is initialized!");
-        })
-        .catch(function() {
-          console.log("[DEMO] :: Something went wrong with the SDK...");
-        });
-    };
-
-    this.initialize = function() {
+    this.initialize = function () {
       console.log("DEMO :: Rainbow Demo Application");
 
-      document.addEventListener(sdk.RAINBOW_ONREADY, onReady);
-
-      document.addEventListener(sdk.RAINBOW_ONLOADED, onLoaded);
+      document.addEventListener(rainbowSDK.RAINBOW_ONREADY, onReady);
     };
 
     this.initialize();
 
     return true;
-  }
+  },
 ]);

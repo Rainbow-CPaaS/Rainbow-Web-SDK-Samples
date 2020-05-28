@@ -1,11 +1,12 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxUser", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+  controller: function rbcConnectionCtrl($rootScope, $scope) {
     $scope.isConnected = false;
 
-    $scope.user = null;
+    $scope.user = false;
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
       event
@@ -13,6 +14,7 @@ angular.module("sample").component("rbxUser", {
       var status = event.detail;
       if (status === rainbowSDK.connection.RAINBOW_CONNECTIONCONNECTED) {
         $scope.isConnected = true;
+        onStarted();
       } else {
         $scope.isConnected = false;
         $scope.user = null;
@@ -46,11 +48,6 @@ angular.module("sample").component("rbxUser", {
     );
 
     // Subscribe to XMPP connection change
-    document.addEventListener(
-      rainbowSDK.connection.RAINBOW_ONSTARTED,
-      onStarted
-    );
   },
-  templateUrl: "./src/js/components/user/userCmp.template.html"
+  templateUrl: "./src/js/components/user/userCmp.template.html",
 });
-

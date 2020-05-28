@@ -1,33 +1,37 @@
-angular.module('sample').component('rbxMessage', {
-    bindings: {
-        item: '<'
-    },
-    controller : function(rainbowSDK, $scope, $interval) {
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
+angular.module("sample").component("rbxMessage", {
+  bindings: {
+    item: "<",
+  },
+  controller: function ($scope, $interval) {
+    var ctrl = $scope;
 
-        var ctrl = $scope;
+    this.$onInit = function () {
+      var updateDateFields = function () {
+        var mdate = moment($scope.$ctrl.item.date);
 
-        this.$onInit = function () {
-            var updateDateFields = function() {
-
-                var mdate = moment($scope.$ctrl.item.date);
-    
-                if (moment().diff(mdate, 'days') == 0) {
-                    return mdate.fromNow();
-                } else {
-                    return mdate.format('lll');
-                }
-                return d;    
-            };
-    
-            $scope.date = updateDateFields();
-    
-            // Arm update date timer
-            $interval(function ($scope) {
-                ctrl.date = updateDateFields();
-                ctrl.$apply();
-            }, 30000, 0, false);
+        if (moment().diff(mdate, "days") == 0) {
+          return mdate.fromNow();
+        } else {
+          return mdate.format("lll");
         }
-        
-    },
-    templateUrl: './src/js/components/conversations/messageCmp.template.html' 
+        return d;
+      };
+
+      $scope.date = updateDateFields();
+
+      // Arm update date timer
+      $interval(
+        function ($scope) {
+          ctrl.date = updateDateFields();
+          ctrl.$apply();
+        },
+        30000,
+        0,
+        false
+      );
+    };
+  },
+  templateUrl: "./src/js/components/conversations/messageCmp.template.html",
 });
+

@@ -1,8 +1,9 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxPresence", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+  controller: function rbcConnectionCtrl($rootScope, $scope) {
     $scope.isConnected = false;
 
     $scope.presence = "offline";
@@ -25,19 +26,19 @@ angular.module("sample").component("rbxPresence", {
       $scope.presence = json.status;
     };
 
-    $scope.online = function() {
+    $scope.online = function () {
       rainbowSDK.presence.setPresenceTo(
         rainbowSDK.presence.RAINBOW_PRESENCE_ONLINE
       );
     };
 
-    $scope.away = function() {
+    $scope.away = function () {
       rainbowSDK.presence.setPresenceTo(
         rainbowSDK.presence.RAINBOW_PRESENCE_AWAY
       );
     };
 
-    $scope.dnd = function() {
+    $scope.dnd = function () {
       rainbowSDK.presence.setPresenceTo(
         rainbowSDK.presence.RAINBOW_PRESENCE_DONOTDISTURB
       );
@@ -55,6 +56,5 @@ angular.module("sample").component("rbxPresence", {
       onPresenceChanged
     );
   },
-  templateUrl: "./src/js/components/presence/presenceCmp.template.html"
+  templateUrl: "./src/js/components/presence/presenceCmp.template.html",
 });
-

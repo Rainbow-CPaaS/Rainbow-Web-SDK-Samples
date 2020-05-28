@@ -1,15 +1,16 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxConversation", {
   bindings: {
-    item: "="
+    item: "=",
   },
-  controller: function(rainbowSDK, $rootScope, $scope) {
+  controller: function ($rootScope, $scope) {
     var ctrl = $scope;
 
     var handlers = [];
 
     $scope.message = "";
 
-    $scope.onSend = function() {
+    $scope.onSend = function () {
       rainbowSDK.im.sendMessageToConversation(
         $scope.conversation,
         $scope.message
@@ -18,7 +19,7 @@ angular.module("sample").component("rbxConversation", {
     };
 
     var onConversationChanged = function onConversationChanged() {
-      setTimeout(function() {
+      setTimeout(function () {
         var containerHeight = $(".conversation-" + ctrl.conversation.dbId)[0]
           .scrollHeight;
         var container = angular.element(
@@ -28,14 +29,14 @@ angular.module("sample").component("rbxConversation", {
       }, 100);
     };
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       $scope.contact = this.item.contact;
 
       $scope.conversation = this.item;
 
       rainbowSDK.im
         .getMessagesFromConversation(this.item, 50)
-        .then(function(__messages) {
+        .then(function (__messages) {
           onConversationChanged();
         });
 
@@ -46,18 +47,18 @@ angular.module("sample").component("rbxConversation", {
         ".conversation-" + ctrl.conversation.dbId
       );
 
-      container.on("scroll", function(__event) {
+      container.on("scroll", function (__event) {
         if (container.scrollTop() <= 0) {
           //Load older messages
           rainbowSDK.im
             .getMessagesFromConversation($scope.conversation, 30)
-            .then(function() {})
-            .catch(function() {});
+            .then(function () {})
+            .catch(function () {});
         }
       });
     };
 
-    this.$onDestroy = function() {
+    this.$onDestroy = function () {
       var handler = handlers.pop();
       while (handler) {
         handler();
@@ -65,6 +66,6 @@ angular.module("sample").component("rbxConversation", {
       }
     };
   },
-  templateUrl: "./src/js/components/conversations/conversationCmp.template.html"
+  templateUrl:
+    "./src/js/components/conversations/conversationCmp.template.html",
 });
-
