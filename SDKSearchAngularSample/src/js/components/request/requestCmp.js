@@ -1,9 +1,10 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxRequest", {
   bindings: {},
 
   templateUrl: "./src/js/components/request/requestCmp.template.html",
 
-  controller: function rbxControllerCtrl(rainbowSDK, $rootScope) {
+  controller: function rbxControllerCtrl($rootScope) {
     "use strict";
 
     var listeners = [];
@@ -16,7 +17,7 @@ angular.module("sample").component("rbxRequest", {
     ctrl.nbAnswered = 0;
     ctrl.nbPending = 0;
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       // Listening to contacts auto-subscriptions
       listeners.push(
         document.addEventListener(
@@ -39,7 +40,7 @@ angular.module("sample").component("rbxRequest", {
     ) {
       var contact = event.detail;
       ctrl.autoAnswered[contact.id] = {
-        contact: contact
+        contact: contact,
       };
       ctrl.nbAnswered++;
     };
@@ -49,45 +50,44 @@ angular.module("sample").component("rbxRequest", {
     ) {
       var contact = event.detail;
       ctrl.pending[contact.id] = {
-        contact: contact
+        contact: contact,
       };
       ctrl.nbPending++;
     };
 
-    ctrl.accept = function(contact) {
+    ctrl.accept = function (contact) {
       console.log("Accept", contact);
       rainbowSDK.contacts
         .acceptInvitation(contact)
-        .then(function() {
+        .then(function () {
           console.log("[DEMO] :: Accepted!");
           delete ctrl.pending[contact.id];
           ctrl.nbPending = Object.keys(ctrl.pending).length;
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log("[DEMO] :: Error when accepting the invitation", err);
         });
     };
 
-    ctrl.decline = function(contact) {
+    ctrl.decline = function (contact) {
       rainbowSDK.contacts
         .declineInvitation(contact)
-        .then(function() {
+        .then(function () {
           console.log("[DEMO] :: Declined!");
           delete ctrl.pending[contact.id];
           ctrl.nbPending = Object.keys(ctrl.pending).length;
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log("[DEMO] :: Error when declining the invitation", err);
         });
     };
 
-    this.$onDestroy = function() {
+    this.$onDestroy = function () {
       var listener = listeners.pop();
       while (listener) {
         listener();
         listener = listeners.pop();
       }
     };
-  }
+  },
 });
-
