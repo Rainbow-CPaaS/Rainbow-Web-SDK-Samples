@@ -1,8 +1,9 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxConnection", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+  controller: function rbcConnectionCtrl($rootScope, $scope) {
     $scope.isConnected = false;
 
     $scope.isLoading = false;
@@ -13,20 +14,20 @@ angular.module("sample").component("rbxConnection", {
       {
         id: 0,
         value: "sandbox",
-        name: "Rainbow Sandbox"
+        name: "Rainbow Sandbox",
       },
       {
         id: 1,
         value: "rainbow",
-        name: "Rainbow Official"
-      }
+        name: "Rainbow Official",
+      },
     ];
 
     $scope.selectedItem = $scope.hosts[0];
 
     var handlers = [];
 
-    $scope.signin = function() {
+    $scope.signin = function () {
       $scope.isLoading = true;
 
       saveToStorage();
@@ -35,12 +36,12 @@ angular.module("sample").component("rbxConnection", {
         case "rainbow":
           rainbowSDK.connection
             .signinOnRainbowOfficial($scope.user.name, $scope.user.password)
-            .then(function(account) {
+            .then(function (account) {
               console.log("[DEMO] :: Successfully signed!");
               $scope.isLoading = false;
               $scope.isConnected = true;
             })
-            .catch(function(err) {
+            .catch(function (err) {
               console.log("[DEMO] :: Error when sign-in", err);
               $scope.isLoading = false;
               $scope.isConnected = false;
@@ -49,12 +50,14 @@ angular.module("sample").component("rbxConnection", {
         default:
           rainbowSDK.connection
             .signin($scope.user.name, $scope.user.password)
-            .then(function(account) {
+            .then(function (account) {
               console.log("[DEMO] :: Successfully signed!");
-              $scope.isLoading = false;
-              $scope.isConnected = true;
+              $scope.$apply(function () {
+                $scope.isLoading = false;
+                $scope.isConnected = true;
+              });
             })
-            .catch(function(err) {
+            .catch(function (err) {
               console.log("[DEMO] :: Error when sign-in", err);
               $scope.isLoading = false;
               $scope.isConnected = false;
@@ -63,20 +66,20 @@ angular.module("sample").component("rbxConnection", {
       }
     };
 
-    $scope.signout = function() {
+    $scope.signout = function () {
       $scope.isLoading = true;
-      rainbowSDK.connection.signout().then(function() {
+      rainbowSDK.connection.signout().then(function () {
         $scope.isLoading = false;
         $scope.isConnected = false;
       });
     };
 
-    var saveToStorage = function() {
+    var saveToStorage = function () {
       sessionStorage.connection = angular.toJson($scope.user);
       sessionStorage.host = angular.toJson($scope.selectedItem);
     };
 
-    var readFromStorage = function() {
+    var readFromStorage = function () {
       if (sessionStorage.connection) {
         $scope.user = angular.fromJson(sessionStorage.connection);
       } else {
@@ -92,23 +95,17 @@ angular.module("sample").component("rbxConnection", {
     };
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
-      event,
-      status
+      event
     ) {
       $scope.state = rainbowSDK.connection.getState();
     };
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       // Subscribe to XMPP connection change
-      handlers.push(
-        document.addEventListener(
-          rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
-          onConnectionStateChangeEvent
-        )
-      );
+      handlers.push();
     };
 
-    this.$onDestroy = function() {
+    this.$onDestroy = function () {
       var handler = handlers.pop();
       while (handler) {
         handler();
@@ -116,11 +113,15 @@ angular.module("sample").component("rbxConnection", {
       }
     };
 
-    var initialize = function() {
+    var initialize = function () {
       readFromStorage();
+      document.addEventListener(
+        rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
+        onConnectionStateChangeEvent
+      );
     };
 
     initialize();
   },
-  templateUrl: "./src/js/components/connection/connectionCmp.template.html"
+  templateUrl: "./src/js/components/connection/connectionCmp.template.html",
 });

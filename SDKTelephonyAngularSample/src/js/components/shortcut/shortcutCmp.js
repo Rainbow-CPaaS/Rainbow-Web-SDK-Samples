@@ -1,59 +1,54 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
+
 angular.module("sample").component("rbxShortcut", {
   bindings: {
-    item: "="
+    item: "=",
   },
-  controller: function(
-    rainbowSDK,
-    $rootScope,
-    $scope,
-    $interval,
-    localStorageService
-  ) {
+  controller: function ($rootScope, $scope, $interval, localStorageService) {
     var ctrl = $scope;
     var that = this;
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       $scope.editable = false;
       $scope.phone = { value: "Empty" };
 
       var oldValue = $scope.phone.value;
 
-      $scope.edit = function() {
+      $scope.edit = function () {
         oldValue = $scope.phone.value;
         $scope.editable = true;
-        setTimeout(function() {
+        setTimeout(function () {
           angular.element("#phone").select();
         }, 100);
       };
 
-      $scope.save = function() {
+      $scope.save = function () {
         oldValue = $scope.phone.value;
         saveToStorage();
         $scope.editable = false;
       };
 
-      $scope.cancel = function() {
+      $scope.cancel = function () {
         $scope.editable = false;
         $scope.phone.value = oldValue;
       };
 
-      $scope.call = function() {
+      $scope.call = function () {
         $rootScope.$broadcast("ON_TELEPHONYDEMOAPP_CALL", $scope.phone.value);
       };
     };
 
-    var saveToStorage = function() {
+    var saveToStorage = function () {
       localStorageService.set($scope.$ctrl.item, $scope.phone);
     };
 
-    var readFromStorage = function() {
+    var readFromStorage = function () {
       $scope.phone = localStorageService.get($scope.$ctrl.item) || {
-        value: "Empty"
+        value: "Empty",
       };
     };
 
     readFromStorage();
   },
-  templateUrl: "./src/js/components/shortcut/shortcutCmp.template.html"
+  templateUrl: "./src/js/components/shortcut/shortcutCmp.template.html",
 });
-

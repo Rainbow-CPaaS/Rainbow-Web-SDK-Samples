@@ -1,77 +1,80 @@
-angular.module('sample').component('rbxCall', {
-    bindings: {
-        item: '='
-    },
-    controller : function(rainbowSDK, $scope, $interval, Notification) {
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 
-        var ctrl = $scope;
-        var that = this;
+angular.module("sample").component("rbxCall", {
+  bindings: {
+    item: "=",
+  },
+  controller: function ($scope, $interval, Notification) {
+    var ctrl = $scope;
+    var that = this;
 
-        this.$onInit = function() {
-            $scope.state = that.item.status.value;
+    this.$onInit = function () {
+      $scope.state = that.item.status.value;
 
-            $scope.clear = function clear() {
+      $scope.clear = function clear() {
+        if (
+          that.item.status.value ===
+          rainbowSDK.telephony.RAINBOW_TELEPHONYINCOMING
+        ) {
+          rainbowSDK.telephony.deflectToVM(that.item);
+        } else {
+          rainbowSDK.telephony.release(that.item);
+        }
+      };
 
-                if(that.item.status.value === rainbowSDK.telephony.RAINBOW_TELEPHONYINCOMING) {
-                    rainbowSDK.telephony.deflectToVM(that.item);
-                }
-                else {
-                    rainbowSDK.telephony.release(that.item);
-                }
-            };
+      $scope.answer = function answer() {
+        rainbowSDK.telephony
+          .answer(that.item)
+          .then(function () {})
+          .catch(function (err) {
+            Notification.error({
+              title: "Telephony Service",
+              message: "Impossible to answer the call:<br>" + err,
+              positionY: "bottom",
+            });
+          });
+      };
 
-            $scope.answer = function answer() {
-                rainbowSDK.telephony.answer(that.item)
-                .then(function() {
+      $scope.hold = function hold() {
+        rainbowSDK.telephony
+          .hold(that.item)
+          .then(function () {})
+          .catch(function (err) {
+            Notification.error({
+              title: "Telephony Service",
+              message: "Impossible to hold the call:<br>" + err,
+              positionY: "bottom",
+            });
+          });
+      };
 
-                }).catch(function(err) {
-                    Notification.error({
-                        title: "Telephony Service",
-                        message: "Impossible to answer the call:<br>" + err,
-                        positionY: 'bottom'
-                    });
-                });
-            };
+      $scope.retrieve = function retrieve() {
+        rainbowSDK.telephony
+          .retrieve(that.item)
+          .then(function () {})
+          .catch(function (err) {
+            Notification.error({
+              title: "Telephony Service",
+              message: "Impossible to retrieve the call:<br>" + err,
+              positionY: "bottom",
+            });
+          });
+      };
 
-            $scope.hold = function hold() {
-                rainbowSDK.telephony.hold(that.item)
-                .then(function() {
-
-                }).catch(function(err) {
-                    Notification.error({
-                        title: "Telephony Service",
-                        message: "Impossible to hold the call:<br>" + err,
-                        positionY: 'bottom'
-                    });
-                });
-            };
-
-            $scope.retrieve = function retrieve() {
-                rainbowSDK.telephony.retrieve(that.item)
-                .then(function() {
-
-                }).catch(function(err) {
-                    Notification.error({
-                        title: "Telephony Service",
-                        message: "Impossible to retrieve the call:<br>" + err,
-                        positionY: 'bottom'
-                    });
-                });
-            };
-
-            $scope.deflect = function deflect() {
-                rainbowSDK.telephony.deflectToVM(that.item)
-                .then(function() {
-
-                }).catch(function(err) {
-                    Notification.error({
-                        title: "Telephony Service",
-                        message: "Impossible to deflect the call:<br>" + err,
-                        positionY: 'bottom'
-                    });
-                });
-            };
-        };
-    },
-    templateUrl: './src/js/components/phone/callCmp.template.html'
+      $scope.deflect = function deflect() {
+        rainbowSDK.telephony
+          .deflectToVM(that.item)
+          .then(function () {})
+          .catch(function (err) {
+            Notification.error({
+              title: "Telephony Service",
+              message: "Impossible to deflect the call:<br>" + err,
+              positionY: "bottom",
+            });
+          });
+      };
+    };
+  },
+  templateUrl: "./src/js/components/phone/callCmp.template.html",
 });
+

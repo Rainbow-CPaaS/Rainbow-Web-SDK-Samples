@@ -1,13 +1,10 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
+
 angular.module("sample").component("rbxPhone", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcPhoneCtrl(
-    rainbowSDK,
-    $rootScope,
-    $scope,
-    Notification
-  ) {
+  controller: function rbcPhoneCtrl($rootScope, $scope, Notification) {
     $scope.isConnected = false;
 
     $scope.state = "- - -";
@@ -27,12 +24,12 @@ angular.module("sample").component("rbxPhone", {
     $scope.call = function call() {
       rainbowSDK.telephony
         .callByNumber($scope.phoneNumber)
-        .then(function(data) {})
-        .catch(function(err) {
+        .then(function (data) {})
+        .catch(function (err) {
           Notification.error({
             title: "Telephony Service",
             message: "The phone number is not correct:<br>" + err,
-            positionY: "bottom"
+            positionY: "bottom",
           });
         });
     };
@@ -41,7 +38,7 @@ angular.module("sample").component("rbxPhone", {
       Notification.success({
         title: "Telephony Service",
         message: "The telephony service is successfully started",
-        positionY: "bottom"
+        positionY: "bottom",
       });
 
       onTelephonyStateChanged();
@@ -51,7 +48,7 @@ angular.module("sample").component("rbxPhone", {
       Notification.error({
         title: "Telephony Service",
         message: "The telephony service has been stopped",
-        positionY: "bottom"
+        positionY: "bottom",
       });
 
       onTelephonyStateChanged();
@@ -95,7 +92,7 @@ angular.module("sample").component("rbxPhone", {
             title: "Telephony Service",
             message:
               "There is no information on the associated phone and PBX system",
-            positionY: "bottom"
+            positionY: "bottom",
           });
         }
       } else {
@@ -108,7 +105,7 @@ angular.module("sample").component("rbxPhone", {
         Notification.warning({
           title: "Telephony Service",
           message: "There is no information on the associated PBX system",
-          positionY: "bottom"
+          positionY: "bottom",
         });
       }
     };
@@ -149,14 +146,14 @@ angular.module("sample").component("rbxPhone", {
       console.log("DEMO", "Active calls: " + Object.keys($scope.calls).length);
     };
 
-    var onCallNumber = function(event, phoneNumber) {
+    var onCallNumber = function (event, phoneNumber) {
       $scope.phoneNumber = phoneNumber;
       if ($scope.isConnected) {
         $scope.call();
       }
     };
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       handlers.push($rootScope.$on("ON_TELEPHONYDEMOAPP_CALL", onCallNumber));
       document.addEventListener(
         rainbowSDK.telephony.RAINBOW_ONTELEPHONYSTARTED,
@@ -172,7 +169,7 @@ angular.module("sample").component("rbxPhone", {
       );
     };
 
-    this.$onDestroy = function() {
+    this.$onDestroy = function () {
       var handler = handlers.pop();
       while (handler) {
         handler();
@@ -180,6 +177,5 @@ angular.module("sample").component("rbxPhone", {
       }
     };
   },
-  templateUrl: "./src/js/components/phone/phoneCmp.template.html"
+  templateUrl: "./src/js/components/phone/phoneCmp.template.html",
 });
-

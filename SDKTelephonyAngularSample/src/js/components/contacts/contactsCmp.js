@@ -1,8 +1,10 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
+
 angular.module("sample").component("rbxContacts", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+  controller: function rbcConnectionCtrl($rootScope, $scope) {
     $scope.isConnected = false;
 
     $scope.nbContacts = 0;
@@ -11,7 +13,7 @@ angular.module("sample").component("rbxContacts", {
 
     var listeners = [];
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       // Subscribe to XMPP connection change
       document.addEventListener(
         rainbowSDK.connection.RAINBOW_ONSTARTED,
@@ -43,7 +45,7 @@ angular.module("sample").component("rbxContacts", {
       );
     };
 
-    this.$onDestroy = function() {
+    this.$onDestroy = function () {
       var listener = listeners.pop();
       while (listener) {
         listener();
@@ -98,6 +100,5 @@ angular.module("sample").component("rbxContacts", {
       }
     };
   },
-  templateUrl: "./src/js/components/contacts/contactsCmp.template.html"
+  templateUrl: "./src/js/components/contacts/contactsCmp.template.html",
 });
-
