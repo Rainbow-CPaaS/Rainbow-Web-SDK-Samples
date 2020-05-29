@@ -1,8 +1,9 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxContact", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcConnectionCtrl(rainbowSDK, $rootScope, $scope) {
+  controller: function rbcConnectionCtrl($rootScope, $scope) {
     "use strict";
 
     var listeners = [];
@@ -12,8 +13,8 @@ angular.module("sample").component("rbxContact", {
         _displayName: "No recipient",
         id: "no",
         status: "offline",
-        avatar: { src: null }
-      }
+        avatar: { src: null },
+      },
     ];
 
     $scope.selectedItem = null;
@@ -26,7 +27,7 @@ angular.module("sample").component("rbxContact", {
 
     $scope.isAvailable = false;
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       // Subscribe to XMPP connection change
       listeners.push(
         document.addEventListener(
@@ -60,7 +61,7 @@ angular.module("sample").component("rbxContact", {
       );
     };
 
-    this.$onDestroy = function() {
+    this.$onDestroy = function () {
       var listener = listeners.pop();
       while (listener) {
         listener();
@@ -84,8 +85,8 @@ angular.module("sample").component("rbxContact", {
             _displayName: "No recipient",
             id: "no",
             status: "offline",
-            avatar: { src: null }
-          }
+            avatar: { src: null },
+          },
         ];
         $scope.selectedItem = $scope.contacts[0];
         changeRecipientValue();
@@ -95,7 +96,7 @@ angular.module("sample").component("rbxContact", {
     var onStart = function onStart() {
       var contacts = rainbowSDK.contacts.getAll();
 
-      contacts = contacts.filter(function(contact) {
+      contacts = contacts.filter(function (contact) {
         return contact.id !== rainbowSDK.contacts.getConnectedUser().id;
       });
 
@@ -159,7 +160,7 @@ angular.module("sample").component("rbxContact", {
       }
     };
 
-    $scope.changeValue = function() {
+    $scope.changeValue = function () {
       console.log("DEMO :: Selected recipient changed", $scope.selectedItem);
       changeRecipientValue();
     };
@@ -188,15 +189,14 @@ angular.module("sample").component("rbxContact", {
       if ($scope.selectedItem) {
         rainbowSDK.webRTC
           .canMakeDesktopSharingCall()
-          .then(function() {
+          .then(function () {
             rainbowSDK.webRTC.callInSharing($scope.selectedItem);
           })
-          .catch(function() {
+          .catch(function () {
             console.log("DEMO :: Your browser can't make sharing call!");
           });
       }
     };
   },
-  templateUrl: "./src/js/components/contact/contactCmp.template.html"
+  templateUrl: "./src/js/components/contact/contactCmp.template.html",
 });
-

@@ -1,9 +1,10 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxSpectrum", {
   bindings: {},
 
   templateUrl: "./src/js/components/spectrum/spectrumCmp.template.html",
 
-  controller: function rbcPhoneCtrl(rainbowSDK, $rootScope, $scope, Call) {
+  controller: function rbcPhoneCtrl($rootScope, $scope, Call) {
     "use strict";
 
     var audioContext = new AudioContext();
@@ -17,11 +18,9 @@ angular.module("sample").component("rbxSpectrum", {
     $scope.isInCommunication = false;
     $scope.isSpectrumDisplayed = false;
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       // get the context from the canvas to draw on
-      ctx = $("#canvasSound")
-        .get()[0]
-        .getContext("2d");
+      ctx = $("#canvasSound").get()[0].getContext("2d");
 
       // create a gradient for the fill. Note the strange
       // offset, since the gradient is calculated based on
@@ -53,7 +52,7 @@ angular.module("sample").component("rbxSpectrum", {
       );
     };
 
-    this.$onDestroy = function() {};
+    this.$onDestroy = function () {};
 
     var onWebRTCStreamAdded = function onWebRTCStreamAdded(event) {
       var streams = event.detail;
@@ -160,7 +159,7 @@ angular.module("sample").component("rbxSpectrum", {
 
           isSpectrumStarted = true;
 
-          javascriptNode.onaudioprocess = function(__event) {
+          javascriptNode.onaudioprocess = function (__event) {
             // get the average for the first channel
             var array = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(array);
@@ -179,5 +178,5 @@ angular.module("sample").component("rbxSpectrum", {
         console.log("[DEMO] :: WebRTC manageSpectrum no stream found");
       }
     };
-  }
+  },
 });

@@ -1,8 +1,9 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxMedia", {
   bindings: {
-    name: "@"
+    name: "@",
   },
-  controller: function rbcPhoneCtrl(rainbowSDK, $rootScope, $scope, $timeout) {
+  controller: function rbcPhoneCtrl($rootScope, $scope, $timeout) {
     "use strict";
 
     var listeners = [];
@@ -18,11 +19,11 @@ angular.module("sample").component("rbxMedia", {
       navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
     $scope.isOther = !($scope.isChrome || $scope.isFirefox);
 
-    $timeout(function() {
+    $timeout(function () {
       initialize();
     }, 1000);
 
-    this.$onInit = function() {};
+    this.$onInit = function () {};
 
     var initialize = function initialize() {
       if ($scope.isChrome) {
@@ -31,9 +32,9 @@ angular.module("sample").component("rbxMedia", {
         // Enumerate the list of available media device
         navigator.mediaDevices
           .getUserMedia({ audio: true, video: true })
-          .then(function(stream) {
+          .then(function (stream) {
             console.log("[DEMO] :: Get user media ok... Enumerate devices...");
-            stream.getTracks().forEach(function(track) {
+            stream.getTracks().forEach(function (track) {
               track.stop();
             });
             navigator.mediaDevices
@@ -41,7 +42,7 @@ angular.module("sample").component("rbxMedia", {
               .then(gotDevices)
               .catch(handleError);
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.log(
               "[DEMO] :: Unable to have access to media devices",
               error
@@ -69,7 +70,7 @@ angular.module("sample").component("rbxMedia", {
     };
 
     var gotDevices = function gotDevices(devices) {
-      devices.forEach(function(device) {
+      devices.forEach(function (device) {
         switch (device.kind) {
           case "audioinput":
             $scope.microphones.push(device);
@@ -91,7 +92,7 @@ angular.module("sample").component("rbxMedia", {
           deviceId: "default",
           groupId: "2029518264",
           kind: "audioinput",
-          label: "No microphone"
+          label: "No microphone",
         });
       }
 
@@ -100,7 +101,7 @@ angular.module("sample").component("rbxMedia", {
           deviceId: "default",
           groupId: "2029518264",
           kind: "audioinput",
-          label: "No speaker"
+          label: "No speaker",
         });
       }
 
@@ -109,10 +110,10 @@ angular.module("sample").component("rbxMedia", {
           deviceId: "default",
           groupId: "2029518264",
           kind: "audioinput",
-          label: "No camera"
+          label: "No camera",
         });
       }
-      $scope.$apply(function() {
+      $scope.$apply(function () {
         $scope.selectedMicrophone = $scope.microphones[0];
         $scope.selectedSpeaker = $scope.speakers[0];
         $scope.selectedCamera = $scope.cameras[0];
@@ -126,27 +127,26 @@ angular.module("sample").component("rbxMedia", {
       $rootScope.$broadcast("DEMO_ON_CHECK_DEVICES_END");
     };
 
-    this.$onDestroy = function() {};
+    this.$onDestroy = function () {};
 
-    $scope.changeMicrophone = function() {
+    $scope.changeMicrophone = function () {
       console.log(
         "[DEMO] :: Change microphone to " + $scope.selectedMicrophone.label
       );
       rainbowSDK.webRTC.useMicrophone($scope.selectedMicrophone.deviceId);
     };
 
-    $scope.changeSpeaker = function() {
+    $scope.changeSpeaker = function () {
       console.log(
         "[DEMO] :: Change speaker to " + $scope.selectedSpeaker.label
       );
       rainbowSDK.webRTC.useSpeaker($scope.selectedSpeaker.deviceId);
     };
 
-    $scope.changeCamera = function() {
+    $scope.changeCamera = function () {
       console.log("[DEMO] :: Change camera to " + $scope.selectedCamera.label);
       rainbowSDK.webRTC.useCamera($scope.selectedCamera.deviceId);
     };
   },
-  templateUrl: "./src/js/components/media/mediaCmp.template.html"
+  templateUrl: "./src/js/components/media/mediaCmp.template.html",
 });
-

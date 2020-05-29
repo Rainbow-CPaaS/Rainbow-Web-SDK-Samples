@@ -1,9 +1,10 @@
+import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 angular.module("sample").component("rbxController", {
   bindings: {
-    name: "@"
+    name: "@",
   },
   templateUrl: "./src/js/components/controller/controllerCmp.template.html",
-  controller: function rbcPhoneCtrl(rainbowSDK, $rootScope, $scope, Call) {
+  controller: function rbcPhoneCtrl($rootScope, $scope, Call) {
     "use strict";
 
     $scope.isConnected = false;
@@ -28,7 +29,7 @@ angular.module("sample").component("rbxController", {
 
     var currentCall = null;
 
-    this.$onInit = function() {
+    this.$onInit = function () {
       // Subscribe to XMPP connection change
       document.addEventListener(
         rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
@@ -62,14 +63,14 @@ angular.module("sample").component("rbxController", {
       $rootScope.$on("DEMO_ON_CHECK_DEVICES_FAILED", onDeviceCheckFailed);
     };
 
-    this.$onDestroy = function() {};
+    this.$onDestroy = function () {};
 
     var onDeviceCheckStart = function onDeviceCheckStart() {
       console.log("[DEMO] :: Start checking devices...");
     };
 
     var onDeviceCheckEnd = function onDeviceCheckEnd() {
-      $scope.$apply(function() {
+      $scope.$apply(function () {
         console.log("[DEMO] :: Devices checking finished!");
         $scope.isCheckedDisplayed = false;
       });
@@ -278,5 +279,5 @@ angular.module("sample").component("rbxController", {
         $scope.isMuted = false;
       }
     };
-  }
+  },
 });
