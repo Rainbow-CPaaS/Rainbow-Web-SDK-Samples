@@ -1,8 +1,8 @@
 import rainbowSDK from "../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
 var sample = angular.module("sample", []);
 
-sample.controller("sampleController", [
-  function ($log, $rootScope, sdk) {
+sample.controller("sampleController", 
+  function () {
     "use strict";
 
     /*********************************************************/
@@ -34,4 +34,4 @@ sample.controller("sampleController", [
 
     return true;
   },
-]);
+);
