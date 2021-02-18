@@ -4,7 +4,8 @@
   "description": "Rainbow SDK for Web Audio Video Angular Sample",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/http-server/bin/http-server -S -C cert.pem -o -p 8887"
+    "start": "./node_modules/http-server/bin/http-server -S -C cert.pem -o -p 8887",
+    "start-win": "node .\\node_modules\\http-server\\bin\\http-server  . -S -C cert.pem -o -p 8887"
   },
   "keywords": [
     "CPaaS",
