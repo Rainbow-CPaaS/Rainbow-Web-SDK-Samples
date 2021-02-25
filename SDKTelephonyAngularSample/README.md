@@ -28,4 +28,8 @@ You will need to create a SSL certificate in order to run a secure local server.
 
 `openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem`
 
-At the end just run `npm start` in your console and open your browser on `http://localhost:8887/`.
+Then, depending on your operating system, run the following command in the root folder:
+- Linux/MacOS: `npm run start`
+- Windows: `npm run start-win`
+
+At the end, open your browser on `http://localhost:8887/ .

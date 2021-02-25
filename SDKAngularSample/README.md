@@ -24,4 +24,8 @@ Before running any of the files mentioned below, run `npm install` in the root f
 
 Once this is done, update the `appId` and `appSecret` variables in `src/js/sdkSampleApp.js` file. If you don't know where can you get your Application ID and Application Secret from, check our [guide](https://hub.openrainbow.com/#/documentation/doc/sdk/web/guides/Adding_id_and_secret_key).
 
-At the end just run `npm start` in your console and open your browser on `http://localhost:8887/`.
+Then, depending on your operating system, run the following command in the root folder:
+- Linux/MacOS: `npm run start`
+- Windows: `npm run start-win`
+
+At the end, open your browser on `http://localhost:8887/ .
