@@ -4,8 +4,8 @@
   "description": "Rainbow Web SDK Telephony Angular Sample",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/http-server/bin/http-server -o -p 8887",
-    "start-win": "node .\\node_modules\\http-server\\bin\\http-server  . -p 8887"
+    "start": "./node_modules/http-server/bin/http-server -S -C cert.pem -o -p 8887",
+    "start-win": "node .\\node_modules\\http-server\\bin\\http-server  . -S -C cert.pem -o -p 8887"
   },
   "keywords": [
     "CPaaS",
