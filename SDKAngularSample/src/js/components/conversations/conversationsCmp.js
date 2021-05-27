@@ -1,29 +1,28 @@
-import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
-angular.module("sample").component("rbxConversations", {
+import rainbowSDK from '../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js';
+angular.module('sample').component('rbxConversations', {
   bindings: {
-    name: "@",
-    conversations: "=",
+    name: '@',
+    conversations: '=',
   },
   controller: function rbcConnectionsCtrl($rootScope, $scope, $timeout) {
     $scope.conversations = [];
+    $scope.openConversations = [];
 
     var getAllOneToOneConversations = function getAllOneToOneConversations() {
-      var conversations = rainbowSDK.conversations.getAllConversations();
-
       var oneToOneConversations = [];
-
-      conversations.forEach(function (conversation) {
-        if (conversation.type === 0) {
-          oneToOneConversations.push(conversation);
-        }
+      rainbowSDK.conversations.getAllConversations().then(conversations => {
+        conversations.forEach(function (conversation) {
+          if (conversation.type === 0) {
+            oneToOneConversations.push(conversation);
+          }
+        });
       });
-
       return oneToOneConversations;
     };
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
       event,
-      status
+      status,
     ) {
       if (status === rainbowSDK.connection.RAINBOW_CONNECTIONCONNECTED) {
         $scope.conversations = getAllOneToOneConversations();
@@ -34,7 +33,7 @@ angular.module("sample").component("rbxConversations", {
 
     var onConversationsListChanged = function onConversationsListChanged(
       event,
-      conversation
+      conversation,
     ) {
       $scope.conversations = $scope.conversations = getAllOneToOneConversations();
     };
@@ -45,24 +44,24 @@ angular.module("sample").component("rbxConversations", {
 
     document.addEventListener(
       rainbowSDK.conversations.RAINBOW_ONCONVERSATIONSCHANGED,
-      onConversationsListChanged
+      onConversationsListChanged,
     );
 
     document.addEventListener(
       rainbowSDK.conversations.RAINBOW_ONCONVERSATIONREMOVED,
-      onConversationsListChanged
+      onConversationsListChanged,
     );
 
     document.addEventListener(
       rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
-      onConnectionStateChangeEvent
+      onConnectionStateChangeEvent,
     );
 
     document.addEventListener(
       rainbowSDK.conversations.RAINBOW_ONCONVERSATIONCHANGED,
-      onConversationChanged
+      onConversationChanged,
     );
   },
   templateUrl:
-    "./src/js/components/conversations/conversationsCmp.template.html",
+    './src/js/components/conversations/conversationsCmp.template.html',
 });

@@ -1,7 +1,7 @@
-import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
-angular.module("sample").component("rbxConnection", {
+import rainbowSDK from '../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js';
+angular.module('sample').component('rbxConnection', {
   bindings: {
-    name: "@",
+    name: '@',
   },
   controller: function rbcConnectionCtrl($rootScope, $scope) {
     $scope.isConnected = false;
@@ -13,13 +13,13 @@ angular.module("sample").component("rbxConnection", {
     $scope.hosts = [
       {
         id: 0,
-        value: "sandbox",
-        name: "Rainbow Sandbox",
+        value: 'sandbox',
+        name: 'Rainbow Sandbox',
       },
       {
         id: 1,
-        value: "rainbow",
-        name: "Rainbow Official",
+        value: 'rainbow',
+        name: 'Rainbow Official',
       },
     ];
 
@@ -33,16 +33,16 @@ angular.module("sample").component("rbxConnection", {
       saveToStorage();
 
       switch ($scope.selectedItem.value) {
-        case "rainbow":
+        case 'rainbow':
           rainbowSDK.connection
             .signinOnRainbowOfficial($scope.user.name, $scope.user.password)
             .then(function (account) {
-              console.log("[DEMO] :: Successfully signed!");
+              console.log('[DEMO] :: Successfully signed!');
               $scope.isLoading = false;
               $scope.isConnected = true;
             })
             .catch(function (err) {
-              console.log("[DEMO] :: Error when sign-in", err);
+              console.log('[DEMO] :: Error when sign-in', err);
               $scope.isLoading = false;
               $scope.isConnected = false;
             });
@@ -51,14 +51,14 @@ angular.module("sample").component("rbxConnection", {
           rainbowSDK.connection
             .signin($scope.user.name, $scope.user.password)
             .then(function (account) {
-              console.log("[DEMO] :: Successfully signed!");
+              console.log('[DEMO] :: Successfully signed!');
               $scope.$apply(function () {
                 $scope.isLoading = false;
                 $scope.isConnected = true;
               });
             })
             .catch(function (err) {
-              console.log("[DEMO] :: Error when sign-in", err);
+              console.log('[DEMO] :: Error when sign-in', err);
               $scope.isLoading = false;
               $scope.isConnected = false;
             });
@@ -83,7 +83,7 @@ angular.module("sample").component("rbxConnection", {
       if (sessionStorage.connection) {
         $scope.user = angular.fromJson(sessionStorage.connection);
       } else {
-        $scope.user = { name: "", password: "" };
+        $scope.user = {name: '', password: ''};
       }
 
       if (sessionStorage.host) {
@@ -95,7 +95,7 @@ angular.module("sample").component("rbxConnection", {
     };
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
-      event
+      event,
     ) {
       $scope.state = rainbowSDK.connection.getState();
     };
@@ -117,11 +117,11 @@ angular.module("sample").component("rbxConnection", {
       readFromStorage();
       document.addEventListener(
         rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
-        onConnectionStateChangeEvent
+        onConnectionStateChangeEvent,
       );
     };
 
     initialize();
   },
-  templateUrl: "./src/js/components/connection/connectionCmp.template.html",
+  templateUrl: './src/js/components/connection/connectionCmp.template.html',
 });

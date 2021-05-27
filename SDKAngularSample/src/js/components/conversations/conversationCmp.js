@@ -1,61 +1,67 @@
-import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
-angular.module("sample").component("rbxConversation", {
+import rainbowSDK from '../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js';
+angular.module('sample').component('rbxConversation', {
   bindings: {
-    item: "=",
+    item: '=',
   },
   controller: function ($rootScope, $scope) {
     var ctrl = $scope;
 
     var handlers = [];
 
-    $scope.message = "";
+    $scope.message = '';
 
     $scope.onSend = function () {
       rainbowSDK.im.sendMessageToConversation(
-        $scope.conversation,
-        $scope.message
+        $scope.conversation.id,
+        $scope.message,
       );
-      $scope.message = "";
+      $scope.message = '';
     };
 
     var onConversationChanged = function onConversationChanged() {
-      setTimeout(function () {
-        var containerHeight = $(".conversation-" + ctrl.conversation.dbId)[0]
-          .scrollHeight;
-        var container = angular.element(
-          ".conversation-" + ctrl.conversation.dbId
-        );
-        container.animate({ scrollTop: containerHeight }, 100);
-      }, 100);
+      if (ctrl.conversation) {
+        setTimeout(function () {
+          var container = angular.element(
+            '.conversation-' + ctrl.conversation.id,
+          );
+          var containerHeight = $('.conversation-' + ctrl.conversation.id)
+            .scrollHeight;
+          container.animate({scrollTop: containerHeight}, 100);
+        }, 100);
+      }
     };
 
     this.$onInit = function () {
-      $scope.contact = this.item.contact;
+      setTimeout(() => {
+        rainbowSDK.contacts
+          .getContactById(this.item.contactId)
+          .then(contact => {
+            $scope.contact = contact;
+            $scope.conversation = this.item;
+            rainbowSDK.im
+              .getMessagesFromConversation(this.item.id, 50)
+              .then(_messages => {
+                onConversationChanged();
+              });
 
-      $scope.conversation = this.item;
+            // Subscribe to XMPP connection change
+            handlers.push($rootScope.$on(this.item.id, onConversationChanged));
 
-      rainbowSDK.im
-        .getMessagesFromConversation(this.item, 50)
-        .then(function (__messages) {
-          onConversationChanged();
-        });
+            var container = angular.element(
+              '.conversation-' + $scope.conversation.id,
+            );
 
-      // Subscribe to XMPP connection change
-      handlers.push($rootScope.$on(this.item.id, onConversationChanged));
-
-      var container = angular.element(
-        ".conversation-" + ctrl.conversation.dbId
-      );
-
-      container.on("scroll", function (__event) {
-        if (container.scrollTop() <= 0) {
-          //Load older messages
-          rainbowSDK.im
-            .getMessagesFromConversation($scope.conversation, 30)
-            .then(function () {})
-            .catch(function () {});
-        }
-      });
+            container.on('scroll', __event => {
+              if (container.scrollTop() <= 0) {
+                //Load older messages
+                rainbowSDK.im
+                  .getMessagesFromConversation($scope.conversation, 30)
+                  .then(function () {})
+                  .catch(function () {});
+              }
+            });
+          });
+      }, 200);
     };
 
     this.$onDestroy = function () {
@@ -67,5 +73,5 @@ angular.module("sample").component("rbxConversation", {
     };
   },
   templateUrl:
-    "./src/js/components/conversations/conversationCmp.template.html",
+    './src/js/components/conversations/conversationCmp.template.html',
 });

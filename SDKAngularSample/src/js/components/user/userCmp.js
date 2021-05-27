@@ -1,7 +1,7 @@
-import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
-angular.module("sample").component("rbxUser", {
+import rainbowSDK from '../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js';
+angular.module('sample').component('rbxUser', {
   bindings: {
-    name: "@",
+    name: '@',
   },
   controller: function rbcConnectionCtrl($rootScope, $scope) {
     $scope.isConnected = false;
@@ -9,7 +9,7 @@ angular.module("sample").component("rbxUser", {
     $scope.user = false;
 
     var onConnectionStateChangeEvent = function onConnectionStateChangeEvent(
-      event
+      event,
     ) {
       var status = event.detail;
       if (status === rainbowSDK.connection.RAINBOW_CONNECTIONCONNECTED) {
@@ -30,24 +30,34 @@ angular.module("sample").component("rbxUser", {
       }
     };
 
+    var getStatus = function getStatus() {
+      $scope.user = rainbowSDK.contacts.getConnectedUser();
+    };
+
     var onStarted = function onReady() {
       // Get the connected user information
-      $scope.user = rainbowSDK.contacts.getConnectedUser();
+      console.log('***************** DEBUG', $scope.user);
 
       // Subscribe to XMPP connection change
       document.addEventListener(
         rainbowSDK.contacts.RAINBOW_ONINFORMATIONCHANGED,
-        onInformationChanged
+        onInformationChanged,
       );
     };
 
     // Subscribe to XMPP connection change
     document.addEventListener(
       rainbowSDK.connection.RAINBOW_ONCONNECTIONSTATECHANGED,
-      onConnectionStateChangeEvent
+      onConnectionStateChangeEvent,
+    );
+
+    // Wait for the SDK to start and then check the status of connected user
+    document.addEventListener(
+      rainbowSDK.connection.RAINBOW_ONSTARTED,
+      onStarted,
     );
 
     // Subscribe to XMPP connection change
   },
-  templateUrl: "./src/js/components/user/userCmp.template.html",
+  templateUrl: './src/js/components/user/userCmp.template.html',
 });

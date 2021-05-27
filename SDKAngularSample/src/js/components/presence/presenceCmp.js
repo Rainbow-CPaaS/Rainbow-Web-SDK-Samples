@@ -15,6 +15,7 @@ angular.module("sample").component("rbxPresence", {
 
       if (status === rainbowSDK.connection.RAINBOW_CONNECTIONCONNECTED) {
         $scope.isConnected = true;
+        $scope.presence = "online";
       } else {
         $scope.isConnected = false;
         $scope.presence = "offline";

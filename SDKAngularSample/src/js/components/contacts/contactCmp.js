@@ -1,7 +1,7 @@
-import rainbowSDK from "../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js";
-angular.module("sample").component("rbxContact", {
+import rainbowSDK from '../../../../node_modules/rainbow-web-sdk/src/rainbow-sdk.min.js';
+angular.module('sample').component('rbxContact', {
   bindings: {
-    item: "<",
+    item: '<',
   },
   controller: function ($scope) {
     this.$onInit = function () {
@@ -10,29 +10,41 @@ angular.module("sample").component("rbxContact", {
       $scope.isConnectedUser = false;
 
       $scope.createConversation = function () {
-        rainbowSDK.conversations
-          .openConversationForContact($scope.$ctrl.item)
-          .then(function (conversation) {})
-          .catch(function () {
-            console.log("ERROR");
-          });
+        if ($scope.$ctrl.item) {
+          rainbowSDK.conversations
+            .getConversationByContactId($scope.$ctrl.item.id)
+            .then(function (conversation) {})
+            .catch(function () {
+              console.log('ERROR');
+            });
+        } else {
+          console.error('No contact to open conversation with');
+        }
       };
 
       $scope.closeConversation = function () {
         rainbowSDK.conversations
-          .closeConversation($scope.$ctrl.item.conversation)
-          .then(function (conversation) {})
-          .catch(function () {
-            console.log("ERROR");
+          .openConversationForContact($scope.$ctrl.item)
+          .then(conversation => {
+            rainbowSDK.conversations
+              .closeConversation(conversation)
+              .then(conversation => {
+                console.log('Conversation closed', conversation);
+              })
+              .catch(function () {
+                console.log('ERROR');
+              });
           });
       };
 
-      if (this.item.id === rainbowSDK.contacts.getConnectedUser().id) {
-        console.log("Remove button");
+      if (
+        $scope.$ctrl.item &&
+        $scope.$ctrl.item.id === rainbowSDK.contacts.getConnectedUser().id
+      ) {
+        console.log('Remove button');
         $scope.isConnectedUser = true;
       }
     };
   },
-  templateUrl: "./src/js/components/contacts/contactCmp.template.html",
+  templateUrl: './src/js/components/contacts/contactCmp.template.html',
 });
-
