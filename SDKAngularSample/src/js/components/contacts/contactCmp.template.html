@@ -1,6 +1,7 @@
 <div class="contactCmp-area">
 	<div class="contactCmp-main">
-		<img class="contactCmp-avatar" width="48" height="48" src="{{$ctrl.item.avatar}}" />
+		<img ng-if="$ctrl.item.avatar" class="contactCmp-avatar" width="48" height="48" src="{{$ctrl.item.avatar}}" />
+		
 		<div class="contactCmp-presence contactCmp-presence-{{$ctrl.item.status}}"></div>	
 		<div class="contactCmp-details">
 			<div class="contactCmp-name">{{$ctrl.item.fullname}}</div>
