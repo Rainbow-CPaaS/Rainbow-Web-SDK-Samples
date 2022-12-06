@@ -15,10 +15,10 @@
   "author": "Alcatel-Lucent Enterprise",
   "license": "ISC",
   "dependencies": {
-    "http-server": "^0.11.1",
+    "http-server": "^0.11.2",
     "rainbow-web-sdk": "^1.77.0"
   },
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.2"
   }
 }
