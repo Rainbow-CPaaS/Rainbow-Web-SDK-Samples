@@ -26,6 +26,6 @@
     "rainbow-web-sdk": "^2.0.0-beta.2-lts"
   },
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "http-server": "^0.11.2"
   }
 }
